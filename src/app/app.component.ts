@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { RailStationsListSource } from './app.models';
+import { RailStationsListSource, CountriesListSource } from './app.models';
 
 @Component({
     selector: 'app-root',
@@ -9,9 +9,11 @@ import { RailStationsListSource } from './app.models';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+    private railApiBaseUrl: string = 'http://localhost:55101';
 
     constructor(http: Http) { 
-        this.railStatonsSource = new RailStationsListSource(http, "http://localhost:55101")
+        this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
+        this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
     }
 
     ngOnInit() {
@@ -30,4 +32,8 @@ export class AppComponent implements OnInit {
     /* autocomplete */
     railStatonsSource: RailStationsListSource;
     railStation: string;
+
+    /* typeahead */
+    countriesSource: CountriesListSource;
+    country: string;
 }

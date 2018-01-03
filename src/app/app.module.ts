@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { SpinnerComponent } from './components/spinner.component';
 import { AutoCompleteComponent } from './components/autocomplete.component';
+import { TypeAheadComponent } from './components/typeahead.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { AutoCompleteComponent } from './components/autocomplete.component';
     declarations: [
         AppComponent,
         SpinnerComponent,
-        AutoCompleteComponent
+        AutoCompleteComponent,
+        TypeAheadComponent
     ],
     providers: [
 
