@@ -1,20 +1,25 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
 import { SpinnerComponent } from './components/spinner.component';
-
+import { AutoCompleteComponent } from './components/autocomplete.component';
 
 @NgModule({
     imports: [
         BrowserModule,
-        CommonModule
+        CommonModule,
+        FormsModule,
+        HttpModule
     ],
     declarations: [
         AppComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        AutoCompleteComponent
     ],
     providers: [
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+
+import { RailStationsListSource } from './app.models';
 
 @Component({
     selector: 'app-root',
@@ -7,8 +10,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-    constructor() { 
-        
+    constructor(http: Http) { 
+        this.railStatonsSource = new RailStationsListSource(http, "http://localhost:55101")
     }
 
     ngOnInit() {
@@ -23,4 +26,8 @@ export class AppComponent implements OnInit {
             this.spinnerActive = false;
         }, timeout);
     }
+
+    /* autocomplete */
+    railStatonsSource: RailStationsListSource;
+    railStation: string;
 }

@@ -1,1 +1,16 @@
 <spinner [active]="spinnerActive"></spinner>
+
+<div *ngIf="!spinnerActive" class="container">
+
+    <div  class="form-group col-md-6">
+        <label>Rail station search</label>
+        <autocomplete 
+            [(ngModel)]="railStation" 
+            [source]="railStatonsSource" 
+            placeholder="Enter a rail station name"
+            name="railStation">
+        </autocomplete>
+        <div>{{ railStation | json }}</div>
+    </div>
+    
+</div>
