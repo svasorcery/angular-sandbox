@@ -24,7 +24,9 @@
     "core-js": "^2.4.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14",
+    "jquery": "3.2.1",
     "bootstrap": "3.3.7",
+    "bootstrap-datepicker": "1.7.1",
     "font-awesome": "4.7.0"
   },
   "devDependencies": {
