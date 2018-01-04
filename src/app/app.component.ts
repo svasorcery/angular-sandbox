@@ -36,4 +36,7 @@ export class AppComponent implements OnInit {
     /* typeahead */
     countriesSource: CountriesListSource;
     country: string;
+
+    /* date-picker */
+    birthDate: Date;
 }
