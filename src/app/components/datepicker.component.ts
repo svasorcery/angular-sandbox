@@ -31,17 +31,15 @@ import 'bootstrap-datepicker';
         }
     ],
     template: `
-        <div class="form-inline ng2-datetime">
-            <div class="form-group date">
-                <input id="{{idDatePicker}}" type="text" class="form-control"
-                       [attr.readonly]="readonly"
-                       [attr.required]="required"
-                       [attr.placeholder]="datepickerOptions.placeholder || 'Выберите дату'"
-                       [attr.tabindex]="tabindex"
-                       [(ngModel)]="dateModel"
-                       (blur)="onTouched()"
-                       (keyup)="checkEmptyValue($event)"/>
-            </div>
+        <div class="ng2-datetime date">
+            <input [id]="idDatePicker" type="text" class="form-control"
+                   [attr.readonly]="readonly"
+                   [attr.required]="required"
+                   [attr.placeholder]="datepickerOptions.placeholder || 'Выберите дату'"
+                   [attr.tabindex]="tabindex"
+                   [(ngModel)]="dateModel"
+                   (blur)="onTouched()"
+                   (keyup)="checkEmptyValue($event)"/>
             <button *ngIf="hasClearButton" type="button" (click)="clearModels()">Clear</button>
         </div>
     `,
