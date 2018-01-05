@@ -39,4 +39,8 @@ export class AppComponent implements OnInit {
 
     /* date-picker */
     birthDate: Date;
+
+    submit(form: any) {
+        console.log(form);
+    }
 }

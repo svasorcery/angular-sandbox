@@ -1,6 +1,6 @@
 <spinner [active]="spinnerActive"></spinner>
 
-<div *ngIf="!spinnerActive" class="container">
+<form #form="ngForm" *ngIf="!spinnerActive" (submit)="submit(birthDay)" class="container">
 
     <div class="form-group col-md-6">
         <label>Rail station autocomplete</label>
@@ -8,6 +8,7 @@
             [(ngModel)]="railStation" 
             [source]="railStatonsSource" 
             placeholder="Start to type a rail station name"
+            required
             name="railStation">
         </autocomplete>
         <div>{{ railStation | json }}</div>
@@ -19,6 +20,7 @@
             [(ngModel)]="country" 
             [source]="countriesSource"
             placeholder="Start to type a country name"
+            required
             name="country">
         </typeahead>
         <div>{{ country | json }}</div>
@@ -28,10 +30,15 @@
         <label>Day of birth</label>        
         <date-picker 
             [(ngModel)]="birthDate"
-            [datepicker]="{placeholder: 'Choose your birth date'}" 
+            [datepicker]="{placeholder: 'Choose your birth date', required: true}" 
+            [validateDateRange]
+            required
             name="birthDate">
         </date-picker>
-        <div>{{ birthDate | date:'dd.MM.yyyy' }}</div>
+        <div *ngIf="form.valid">{{ birthDate | date:'dd.MM.yyyy' }}</div>
+        <div *ngIf="form.invalid">{{ form.controls.birthDate.errors.message }}</div>
     </div>
+
+    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
     
-</div>
+</form>
