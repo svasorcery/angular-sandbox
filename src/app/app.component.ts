@@ -20,6 +20,10 @@ export class AppComponent implements OnInit {
         this.activateSpinner(5000);
     }
 
+    submit(form: any) {
+        console.log(form.value);
+    }
+
     /* spinner */
     spinnerActive: boolean;
     activateSpinner(timeout: number = 10000) {
@@ -40,7 +44,6 @@ export class AppComponent implements OnInit {
     /* date-picker */
     birthDate: Date;
 
-    submit(form: any) {
-        console.log(form);
-    }
+    /* error */
+    error: boolean;
 }

@@ -1,44 +1,56 @@
 <spinner [active]="spinnerActive"></spinner>
 
-<form #form="ngForm" *ngIf="!spinnerActive" (submit)="submit(birthDay)" class="container">
 
-    <div class="form-group col-md-6">
-        <label>Rail station autocomplete</label>
-        <autocomplete 
-            [(ngModel)]="railStation" 
-            [source]="railStatonsSource" 
-            placeholder="Start to type a rail station name"
-            required
-            name="railStation">
-        </autocomplete>
-        <div>{{ railStation | json }}</div>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label>Country typeahead</label>
-        <typeahead 
-            [(ngModel)]="country" 
-            [source]="countriesSource"
-            placeholder="Start to type a country name"
-            required
-            name="country">
-        </typeahead>
-        <div>{{ country | json }}</div>
-    </div>
-
-    <div class="form-group col-md-6">
-        <label>Day of birth</label>        
-        <date-picker 
-            [(ngModel)]="birthDate"
-            [datepicker]="{placeholder: 'Choose your birth date', required: true}" 
-            [validateDateRange]
-            required
-            name="birthDate">
-        </date-picker>
-        <div *ngIf="form.valid">{{ birthDate | date:'dd.MM.yyyy' }}</div>
-        <div *ngIf="form.invalid">{{ form.controls.birthDate.errors.message }}</div>
-    </div>
-
-    <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+<div *ngIf="!spinnerActive" class="container" style="padding-top:10px">
     
-</form>
+    <div> 
+        <button *ngIf="!error" (click)="error=!error" class="btn btn-danger">Show error</button>
+        <error [active]="error" dismissible="true" refreshable="true" (click)="error=!error"></error>
+    </div>
+    <br><br>
+
+
+    <form #form="ngForm" (submit)="submit(form)">
+
+        <div class="form-group col-md-6">
+            <label>Rail station autocomplete</label>
+            <autocomplete 
+                [(ngModel)]="railStation" 
+                [source]="railStatonsSource" 
+                placeholder="Start to type a rail station name"
+                required
+                name="railStation">
+            </autocomplete>
+            <div>{{ railStation | json }}</div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Country typeahead</label>
+            <typeahead 
+                [(ngModel)]="country" 
+                [source]="countriesSource"
+                placeholder="Start to type a country name"
+                required
+                name="country">
+            </typeahead>
+            <div>{{ country | json }}</div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Day of birth</label>        
+            <date-picker 
+                [(ngModel)]="birthDate"
+                [datepicker]="{placeholder: 'Choose your birth date', required: true}" 
+                [validateDateRange]
+                required
+                name="birthDate">
+            </date-picker>
+            <div *ngIf="form.valid">{{ birthDate | date:'dd.MM.yyyy' }}</div>
+            <div *ngIf="form.invalid">{{ form.controls.birthDate.errors.message }}</div>
+        </div>
+
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        
+    </form>
+
+</div>
