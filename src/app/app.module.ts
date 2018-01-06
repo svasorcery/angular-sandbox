@@ -11,6 +11,7 @@ import { ErrorComponent } from './components/error.component';
 import { AutoCompleteComponent } from './components/autocomplete.component';
 import { TypeAheadComponent } from './components/typeahead.component';
 import { DatePickerComponent } from './components/datepicker.component';
+import { ModalComponent } from './components/modal.component';
 
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
 
@@ -28,6 +29,7 @@ import { DateRangeValidationDirective } from './directives/date-range-validation
         AutoCompleteComponent,
         TypeAheadComponent,
         DatePickerComponent,
+        ModalComponent,
         DateRangeValidationDirective
     ],
     providers: [

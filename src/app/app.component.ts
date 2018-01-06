@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.activateSpinner(5000);
+        this.activateSpinner(3000);
     }
 
     submit(form: any) {
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
     /* spinner */
     spinnerActive: boolean;
-    activateSpinner(timeout: number = 10000) {
+    activateSpinner(timeout: number = 5000) {
         this.spinnerActive = true;
         setTimeout(() => {
             this.spinnerActive = false;
@@ -46,4 +46,21 @@ export class AppComponent implements OnInit {
 
     /* error */
     error: boolean;
+
+    /* modal */
+    modal: boolean;
+    modalContent: string;
+    showModal() {
+        this.modal = true;
+        setTimeout(() => {
+            this.modalContent = 'MODAL CONTENT LOADED';
+            this.hideModal();
+        }, 2000);
+    }
+    hideModal() {
+        setTimeout(() => {
+            this.modalContent = null;
+            this.modal = false;
+        }, 5000);
+    }
 }

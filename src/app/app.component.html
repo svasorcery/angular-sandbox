@@ -7,10 +7,15 @@
         <button *ngIf="!error" (click)="error=!error" class="btn btn-danger">Show error</button>
         <error [active]="error" dismissible="true" refreshable="true" (click)="error=!error"></error>
     </div>
+    <br>
+
+    <div>
+        <button (click)="showModal()" class="btn btn-default">Show modal</button>
+    </div>
     <br><br>
 
 
-    <form #form="ngForm" (submit)="submit(form)">
+    <form #form="ngForm" (submit)="submit(form)" class="well">
 
         <div class="form-group col-md-6">
             <label>Rail station autocomplete</label>
@@ -52,5 +57,18 @@
         <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
         
     </form>
+
+    <modal [(visible)]="modal" header="Modal header">
+        <!-- on data retrieved -->
+        <h4 *ngIf="modalContent">
+            {{ modalContent }}
+        </h4>
+
+        <!-- on data loading -->
+        <i *ngIf="!modalContent" 
+            class="fa fa-spinner fa-pulse fa-5x fa-fw" 
+            style="margin-top:-0.55em; margin-left:-0.66em; position:fixed; top:50%; left:50%;">
+        </i>
+    </modal>
 
 </div>
