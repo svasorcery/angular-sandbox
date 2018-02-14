@@ -63,4 +63,27 @@ export class AppComponent implements OnInit {
             this.modal = false;
         }, 5000);
     }
+
+    /* filter */
+    filterTerm: string = '';
+    pizzas: string[] = [
+        'Alla Napoletana',
+        'Marinara',
+        'Pugliese',
+        'Capricciosa',
+        'Veronese',
+        'Sicilian',
+        'Quattro stagioni',
+        'Ai Quattro Formagi',
+        'Ai Funghi e Salsicce',
+        'Italian Tuna',
+        'Pomodoro Pachina and Rughetta',
+        'Italian Calzones',
+        'al taglio',
+        'Sfincione',
+        'Focaccia',
+        'Focaccia Al Rosmarino',
+        'Romana',
+        'Liguria'
+    ];
 }

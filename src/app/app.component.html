@@ -58,6 +58,19 @@
         
     </form>
 
+    <div class="form-group col-md-3">
+        <label>Filter pizzas</label> 
+        <input #filter
+            [(ngModel)]="filterTerm" 
+            placeholder="Enter term to filter items"
+            class="form-control">
+        <ul>
+            <li *ngFor="let pizza of pizzas | filter : filterTerm">
+                {{ pizza }}
+            </li>
+        </ul>
+    </div>
+
     <modal [(visible)]="modal" header="Modal header">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
