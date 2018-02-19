@@ -71,7 +71,25 @@
         </ul>
     </div>
 
-    <modal [(visible)]="modal" header="Modal header">
+    <div class="col-md-3">
+        <popover-content #clickPopover title="Title" placement="top" [closeOnClickOutside]="true">
+            Click popover content
+        </popover-content>
+        <div><label>Popover on click</label></div>
+        <button [popover]="clickPopover" class="btn btn-default">
+            <i class="fa fa-question"></i> Click me
+        </button>
+        
+        <popover-content #hoverPopover title="Another title" placement="top">
+            Hover popover content
+        </popover-content>
+        <div><label>Popover on hover</label></div>
+        <button [popover]="hoverPopover" [popoverOnHover]="true" class="btn btn-default">
+            <i class="fa fa-info"></i> Hover me
+        </button>
+    </div>
+
+    <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
             {{ modalContent }}

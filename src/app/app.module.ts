@@ -13,9 +13,11 @@ import { AutoCompleteComponent } from './components/autocomplete.component';
 import { TypeAheadComponent } from './components/typeahead.component';
 import { DatePickerComponent } from './components/datepicker.component';
 import { ModalComponent } from './components/modal.component';
+import { PopoverContentComponent } from './components/popover.component';
 
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
+import { PopoverDirective } from './components/popover.component';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -36,7 +38,9 @@ import { FilterPipe } from './pipes/filter.pipe';
         TypeAheadComponent,
         DatePickerComponent,
         ModalComponent,
+        PopoverContentComponent,
 
+        PopoverDirective,
         DateRangeValidationDirective,
 
         FilterPipe
