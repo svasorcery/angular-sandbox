@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, Subscription, Subject } from "rxjs";
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -100,6 +100,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
     @Input() source: IAutoCompleteListSource;
     @Input() placeholder: string;
     @Input() searchOnInit: string;
+    @Output('select') onSelect: EventEmitter<{ name: string }> = new EventEmitter();
 
     public data: any = null;
     public items: { name: string }[];
@@ -182,6 +183,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
         this.hoverIndex = -1;
         this.label = item.name;
         this.propagateChange(item);
+        this.onSelect.emit(item);
     }
 
     public leave(): void {
