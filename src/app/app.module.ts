@@ -14,6 +14,7 @@ import { TypeAheadComponent } from './components/typeahead.component';
 import { DatePickerComponent } from './components/datepicker.component';
 import { ModalComponent } from './components/modal.component';
 import { PopoverContentComponent } from './components/popover.component';
+import { ToggleSwitchComponent } from './components/toggle-switch.component';
 
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
@@ -39,6 +40,7 @@ import { FilterPipe } from './pipes/filter.pipe';
         DatePickerComponent,
         ModalComponent,
         PopoverContentComponent,
+        ToggleSwitchComponent,
 
         PopoverDirective,
         DateRangeValidationDirective,

@@ -86,4 +86,7 @@ export class AppComponent implements OnInit {
         'Romana',
         'Liguria'
     ];
+
+    /* toggle-switch */
+    switchOn: boolean = true;
 }

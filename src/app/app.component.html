@@ -89,6 +89,11 @@
         </button>
     </div>
 
+    <div class="col-md-3">
+        <toggle-switch [(ngModel)]="switchOn"></toggle-switch>
+        <span>switchOn: {{ switchOn }}</span>
+    </div>
+
     <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
