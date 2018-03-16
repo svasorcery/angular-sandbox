@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: 'modal',
     template: `
-        <div *ngIf="visible" class="modal-dialog">
+        <div *ngIf="visible" class="modal-dialog" [class.wide]="wide">
             <h2>{{ header }}</h2>
             <button *ngIf="closable" (click)="close()" aria-label="Close" class="modal-dialog-close-btn">
                 <span class="fa fa-close"></span>
@@ -37,12 +37,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
             right: 0;
             margin-right: auto;
             margin-left: auto;
-            min-height: 80%;
-            max-height: 80%;
+            height: 50%;
             width: 90%;
             max-width: 75%;
             background-color: #fff;
             box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+        }
+        
+        .wide {
+            height: 80%;
+            width: 80%; 
         }
 
         @media (min-width: 768px) {
@@ -52,8 +56,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
         }
 
         .modal-dialog-content {
-            min-height: 200px;
-            max-height: 500px;
+            padding: 20px;
             overflow: auto;
         }
 
@@ -72,6 +75,8 @@ export class ModalComponent {
     @Input() header: string = '';
     @Input() closable: boolean = true;
     @Input() visible: boolean = false;
+    @Input() wide: boolean = false;
+
 
     @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
