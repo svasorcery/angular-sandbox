@@ -94,7 +94,7 @@
         <span>switchOn: {{ switchOn }}</span>
     </div>
 
-    <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header">
+    <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header" [wide]="true">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
             {{ modalContent }}
