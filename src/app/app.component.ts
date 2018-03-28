@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
 
     /* filter */
     filterTerm: string = '';
-    pizzas: string[] = [
+    pizzasList: ListItem[] = [
         'Alla Napoletana',
         'Marinara',
         'Pugliese',
@@ -86,10 +86,9 @@ export class AppComponent implements OnInit {
         'Focaccia Al Rosmarino',
         'Romana',
         'Liguria'
-    ];
+    ].map(p => { return { name: p } as ListItem });
 
     /* checkbox-list */
-    pizzasList: ListItem[] = this.pizzas.map(p => { return { name: p } as ListItem });
     selectedPizzaIndexes = [ 1, 3, 5 ];
     selectedPizzas: ListItem[] = [];
 

@@ -66,8 +66,8 @@
                 placeholder="Enter term to filter items"
                 class="form-control">
             <ul>
-                <li *ngFor="let pizza of pizzas | filter : filterTerm">
-                    {{ pizza }}
+                <li *ngFor="let pizza of pizzasList | filter : filterTerm">
+                    {{ pizza.name }}
                 </li>
             </ul>
         </div>
