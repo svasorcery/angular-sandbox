@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { RailStationsListSource, CountriesListSource } from './app.models';
+import { ListItem } from './components/checkbox-list.component';
 
 @Component({
     selector: 'app-root',
@@ -86,6 +87,11 @@ export class AppComponent implements OnInit {
         'Romana',
         'Liguria'
     ];
+
+    /* checkbox-list */
+    pizzasList: ListItem[] = this.pizzas.map(p => { return { name: p } as ListItem });
+    selectedPizzaIndexes = [ 1, 3, 5 ];
+    selectedPizzas: ListItem[] = [];
 
     /* toggle-switch */
     switchOn: boolean = true;
