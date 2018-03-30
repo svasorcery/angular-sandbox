@@ -1,5 +1,10 @@
 <spinner [active]="spinnerActive"></spinner>
 
+<error [active]="apiError" 
+    [error]="apiError"
+    [dismissible]="true">
+</error>
+
 
 <div *ngIf="!spinnerActive" class="container" style="padding-top:10px">
     

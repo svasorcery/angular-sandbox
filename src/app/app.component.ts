@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { ApiError } from './components/errors/errors.models';
+import { NotificationService } from './components/errors/notification.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
 import { ListItem } from './components/checkbox-list.component';
 
@@ -11,14 +13,18 @@ import { ListItem } from './components/checkbox-list.component';
 })
 export class AppComponent implements OnInit {
     private railApiBaseUrl: string = 'http://localhost:55101';
+    apiError: ApiError;
 
-    constructor(http: Http) { 
+    constructor(http: Http, private _notification: NotificationService) { 
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
         this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
     }
 
     ngOnInit() {
         this.activateSpinner(3000);
+        this._notification
+            .notification$
+            .subscribe(error => this.apiError = error);
     }
 
     submit(form: any) {

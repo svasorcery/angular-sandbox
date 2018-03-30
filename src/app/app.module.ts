@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+
+// modules
+import { ErrorsModule } from './components/errors/errors.module';
 
 // components
 import { SpinnerComponent } from './components/spinner.component';
@@ -29,7 +33,9 @@ import { FilterPipe } from './pipes/filter.pipe';
         BrowserModule,
         CommonModule,
         FormsModule,
-        HttpModule
+        HttpModule,
+        RouterModule,
+        ErrorsModule
     ],
     declarations: [
         AppComponent,
