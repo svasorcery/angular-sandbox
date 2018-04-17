@@ -24,6 +24,7 @@ import { CheckboxListComponent } from './components/checkbox-list.component';
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
 import { PopoverDirective } from './components/popover.component';
+import { AuthorizationService, AccountService, DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -52,11 +53,14 @@ import { FilterPipe } from './pipes/filter.pipe';
 
         PopoverDirective,
         DateRangeValidationDirective,
+        DisableIfUnauthorizedDirective,
+        HideIfUnauthorizedDirective,
 
         FilterPipe
     ],
     providers: [
-
+        AuthorizationService,
+        AccountService
     ],
     bootstrap: [
         AppComponent
