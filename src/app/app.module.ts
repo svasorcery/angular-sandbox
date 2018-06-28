@@ -21,6 +21,7 @@ import { PopoverContentComponent } from './components/popover.component';
 import { ToggleSwitchComponent } from './components/toggle-switch.component';
 import { CheckboxListComponent } from './components/checkbox-list.component';
 import { FileUploadComponent } from './components/file-upload.component';
+import { FileReadComponent } from './components/file-read.component';
 
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
@@ -52,6 +53,7 @@ import { FilterPipe } from './pipes/filter.pipe';
         ToggleSwitchComponent,
         CheckboxListComponent,
         FileUploadComponent,
+        FileReadComponent,
 
         PopoverDirective,
         DateRangeValidationDirective,

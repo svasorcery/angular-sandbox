@@ -122,6 +122,10 @@
         <file-upload type="primary-inverse"></file-upload>
     </div>
 
+    <div class="col-md-3">
+        <file-read></file-read>
+    </div>
+
     <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header" [wide]="true">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
