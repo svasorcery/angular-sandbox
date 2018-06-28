@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     private railApiBaseUrl: string = 'http://localhost:55101';
     apiError: ApiError;
 
-    constructor(http: Http, private _notification: NotificationService) { 
+    constructor(http: Http, private _notification: NotificationService) {
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
         this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
     }

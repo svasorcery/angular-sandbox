@@ -20,11 +20,12 @@ import { ModalComponent } from './components/modal.component';
 import { PopoverContentComponent } from './components/popover.component';
 import { ToggleSwitchComponent } from './components/toggle-switch.component';
 import { CheckboxListComponent } from './components/checkbox-list.component';
+import { FileUploadComponent } from './components/file-upload.component';
 
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
 import { PopoverDirective } from './components/popover.component';
-import { AuthorizationService, AccountService, DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
+//import { AuthorizationService, AccountService, DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -35,12 +36,12 @@ import { FilterPipe } from './pipes/filter.pipe';
         CommonModule,
         FormsModule,
         HttpModule,
-        RouterModule,
-        ErrorsModule
+        ErrorsModule,
+        RouterModule
     ],
     declarations: [
         AppComponent,
-        
+
         SpinnerComponent,
         ErrorComponent,
         AutoCompleteComponent,
@@ -50,20 +51,23 @@ import { FilterPipe } from './pipes/filter.pipe';
         PopoverContentComponent,
         ToggleSwitchComponent,
         CheckboxListComponent,
+        FileUploadComponent,
 
         PopoverDirective,
         DateRangeValidationDirective,
-        DisableIfUnauthorizedDirective,
-        HideIfUnauthorizedDirective,
+        //DisableIfUnauthorizedDirective,
+        //HideIfUnauthorizedDirective,
 
         FilterPipe
     ],
     providers: [
-        AuthorizationService,
-        AccountService
+        //AuthorizationService,
+        //AccountService
     ],
     bootstrap: [
         AppComponent
     ]
 })
-export class AppModule { }
+export class AppModule {
+
+}

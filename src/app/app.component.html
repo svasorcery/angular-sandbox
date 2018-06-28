@@ -118,6 +118,10 @@
         <span>switchOn: {{ switchOn }}</span>
     </div>
 
+    <div class="col-md-3">
+        <file-upload type="primary-inverse"></file-upload>
+    </div>
+
     <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header" [wide]="true">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
