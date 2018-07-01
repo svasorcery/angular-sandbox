@@ -30,6 +30,7 @@ import { PopoverDirective } from './components/popover.component';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
+import { FileSizePipe } from './pipes/file-size.pipe';
 
 @NgModule({
     imports: [
@@ -60,7 +61,8 @@ import { FilterPipe } from './pipes/filter.pipe';
         //DisableIfUnauthorizedDirective,
         //HideIfUnauthorizedDirective,
 
-        FilterPipe
+        FilterPipe,
+        FileSizePipe
     ],
     providers: [
         //AuthorizationService,
