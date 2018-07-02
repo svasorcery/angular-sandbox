@@ -56,6 +56,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class FileReadComponent {
     @Input() accept: string = '.txt';
+    @Input() encoding: string = 'UTF-8';
     @Input() sizeLimitKb: number = 51200;
     @Output('read') onChange: EventEmitter<string> = new EventEmitter();
     @Output('progress') onProgressChange: EventEmitter<number> = new EventEmitter();
@@ -66,7 +67,7 @@ export class FileReadComponent {
     constructor() { }
 
     public readFile(file: File): void {
-        if (!file) return;
+        if (!file) { return; }
 
         if ((file.size / 1024) > this.sizeLimitKb) {
             alert(`Файл превышает максимальный размер ${this.sizeLimitKb} Kb`);
@@ -76,7 +77,7 @@ export class FileReadComponent {
         this.locked = true;
         const that = this;
         const reader = new FileReader();
-        reader.readAsBinaryString(file);
+        reader.readAsText(file, this.encoding);
 
         reader.onprogress = (data) => {
             if (data.lengthComputable) {
@@ -92,7 +93,6 @@ export class FileReadComponent {
             that.onChange.emit(reader.result);
         };
 
-        reader.onloadend = () => {
-        };
+        reader.onloadend = () => { };
     }
 }
