@@ -15,5 +15,5 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
             .catch((error: HttpErrorResponse) => {
                 this._handler.handleError(error);
                 return Observable.empty<HttpEvent<any>>();
-            });
+            })
 }

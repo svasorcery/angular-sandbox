@@ -5,11 +5,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     selector: 'toggle-switch',
     template: `
         <div class="switch">
-            <input type="checkbox" 
-                [(ngModel)]="value" 
+            <input type="checkbox"
+                [(ngModel)]="value"
                 (change)="onChange()"
-                [id]="name" 
-                [name]="name" 
+                [id]="name"
+                [name]="name"
                 class="switch-checkbox">
             <label class="switch-label" [for]="name">
                 <span class="switch-inner"></span>
@@ -56,14 +56,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
             background: #80AFD9;
             position: absolute; top: 0; bottom: 0;
             right: 37px;
-            transition: all 0.3s ease-in 0s; 
+            transition: all 0.3s ease-in 0s;
         }
         .switch-checkbox:checked + .switch-label .switch-inner {
             margin-left: 0;
         }
         .switch-checkbox:checked + .switch-label .toggle-switch {
-            right: 0px; 
-            background-color: #337AB7; 
+            right: 0px;
+            background-color: #337AB7;
         }
     `],
     providers: [
@@ -88,9 +88,9 @@ export class ToggleSwitchComponent implements ControlValueAccessor {
 
 
     /* --- ControlValueAccessor -- */
-    private propagateChange = (_: any) => { }
+    private propagateChange = (_: any) => { };
     writeValue = (obj: any) => this.value = obj;
     registerOnChange = (fn: any) => this.propagateChange = fn;
-    registerOnTouched = (fn: any) => { }
-    setDisabledState = (isDisabled: boolean) => { }
+    registerOnTouched = (fn: any) => { };
+    setDisabledState = (isDisabled: boolean) => { };
 }

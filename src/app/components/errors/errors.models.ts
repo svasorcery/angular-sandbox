@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpErrorResponse } from '@angular/common/http';
 
 export class ApiError {
     public code: string = '00000';

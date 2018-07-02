@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ApiError } from '../components/errors/errors.models';
 
@@ -6,9 +6,17 @@ import { ApiError } from '../components/errors/errors.models';
     selector: 'error',
     template: `
         <div *ngIf="active" class="panel panel-danger">
-            <div class="alert alert-danger panel-body" [class.alert-dismissible]="dismissible" role="alert" style="margin-bottom:0">
+            <div class="alert alert-danger panel-body"
+                [class.alert-dismissible]="dismissible"
+                role="alert"
+                style="margin-bottom:0">
                 <div class="col-md-1 pull-right">
-                    <button *ngIf="dismissible" (click)="active=!active" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <button *ngIf="dismissible"
+                        (click)="active=!active"
+                        type="button"
+                        class="close"
+                        data-dismiss="alert"
+                        aria-label="Close">
                         <i class="fa fa-close" style="padding:0 20px"></i>
                     </button>
                 </div>
@@ -40,6 +48,6 @@ export class ErrorComponent {
     constructor() { }
 
     refresh() {
-        window.location.reload();  
+        window.location.reload();
     }
 }

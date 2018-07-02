@@ -8,14 +8,14 @@ import 'bootstrap-datepicker';
 
 (function ($) {
     $.fn.datepicker.dates['ru'] = {
-        days: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"],
-        daysShort: ["Вск", "Пнд", "Втр", "Срд", "Чтв", "Птн", "Суб"],
-        daysMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-        months: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-        monthsShort: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"],
-        today: "Сегодня",
-        clear: "Очистить",
-        format: "dd.mm.yyyy",
+        days: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+        daysShort: ['Вск', 'Пнд', 'Втр', 'Срд', 'Чтв', 'Птн', 'Суб'],
+        daysMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+        months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+        monthsShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+        today: 'Сегодня',
+        clear: 'Очистить',
+        format: 'dd.mm.yyyy',
         weekStart: 1
     };
 }(jQuery));
@@ -43,9 +43,9 @@ import 'bootstrap-datepicker';
             <button *ngIf="hasClearButton" type="button" (click)="clearModels()">Clear</button>
         </div>
     `,
-    styles: [
-        '.ng2-datetime *[hidden] { display: none; }'
-    ]
+    styles: [`
+        .ng2-datetime *[hidden] { display: none; }
+    `]
 })
 export class DatePickerComponent implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges {
     @Input('datepicker') datepickerOptions: any = {};
@@ -57,7 +57,7 @@ export class DatePickerComponent implements ControlValueAccessor, AfterViewInit,
 
     date: Date; // ngModel
     dateModel: string;
-    timeModel: string = "0";
+    timeModel: string = '0';
 
     // instances
     datepicker: any;
@@ -69,9 +69,7 @@ export class DatePickerComponent implements ControlValueAccessor, AfterViewInit,
     }
 
     @HostListener('blur')
-    onTouched = () => {
-
-    }
+    onTouched = () => { }
 
     @HostBinding('attr.tabindex')
     get tabindexAttr(): string | undefined {
@@ -114,11 +112,9 @@ export class DatePickerComponent implements ControlValueAccessor, AfterViewInit,
         if (value) {
             if (isString(value)) {
                 this.date = new Date(value);
-            }
-            else if (isDate(value)) {
+            } else if (isDate(value)) {
                 this.date = value;
-            }
-            else {
+            } else {
                 this.clearModels();
                 return;
             }
@@ -178,7 +174,7 @@ export class DatePickerComponent implements ControlValueAccessor, AfterViewInit,
 
     private init(): void {
         if (!this.datepicker && this.datepickerOptions !== false) {
-            let options = jQuery.extend({
+            const options = jQuery.extend({
                 enableOnReadonly: !this.readonly,
                 startDate: this.start,
                 language: 'ru',

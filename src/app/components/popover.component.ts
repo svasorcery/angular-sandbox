@@ -1,27 +1,27 @@
-import { Component, Input, Output, OnChanges, AfterViewInit, OnDestroy, 
-    ComponentRef, ViewContainerRef, ElementRef, ChangeDetectorRef, 
-    ViewChild, EventEmitter, Renderer, Directive, HostListener, 
-    ComponentFactoryResolver, ComponentFactory, SimpleChange 
-} from "@angular/core";
+import { Component, Input, Output, OnChanges, AfterViewInit, OnDestroy,
+    ComponentRef, ViewContainerRef, ElementRef, ChangeDetectorRef,
+    ViewChild, EventEmitter, Renderer, Directive, HostListener,
+    ComponentFactoryResolver, ComponentFactory, SimpleChange
+} from '@angular/core';
 
 @Directive({
-    selector: "[popover]",
-    exportAs: "popover"
+    selector: '[popover]',
+    exportAs: 'popover'
 })
 export class PopoverDirective implements OnChanges {
     protected PopoverComponent = PopoverContentComponent;
     protected popover: ComponentRef<PopoverContentComponent>;
     protected visible: boolean;
-    
+
     constructor(
         protected viewContainerRef: ViewContainerRef,
         protected resolver: ComponentFactoryResolver
     ) { }
-    
-    @Input("popover") content: string|PopoverContentComponent;
+
+    @Input('popover') content: string|PopoverContentComponent;
     @Input() popoverDisabled: boolean;
     @Input() popoverAnimation: boolean;
-    @Input() popoverPlacement: "top"|"bottom"|"left"|"right"|"auto"|"auto top"|"auto bottom"|"auto left"|"auto right";
+    @Input() popoverPlacement: 'top'|'bottom'|'left'|'right'|'auto'|'auto top'|'auto bottom'|'auto left'|'auto right';
     @Input() popoverTitle: string;
     @Input() popoverOnHover: boolean = false;
     @Input() popoverCloseOnClickOutside: boolean;
@@ -30,24 +30,24 @@ export class PopoverDirective implements OnChanges {
     @Output() onShown = new EventEmitter<PopoverDirective>();
     @Output() onHidden = new EventEmitter<PopoverDirective>();
 
-    
-    @HostListener("click") 
+
+    @HostListener('click')
     showOrHideOnClick(): void {
         if (this.popoverOnHover) return;
         if (this.popoverDisabled) return;
         this.toggle();
     }
 
-    @HostListener("focusin")
-    @HostListener("mouseenter")
+    @HostListener('focusin')
+    @HostListener('mouseenter')
     showOnHover(): void {
         if (!this.popoverOnHover) return;
         if (this.popoverDisabled) return;
         this.show();
     }
 
-    @HostListener("focusout")
-    @HostListener("mouseleave")
+    @HostListener('focusout')
+    @HostListener('mouseleave')
     hideOnHover(): void {
         if (this.popoverCloseOnMouseOutside) return;
         if (!this.popoverOnHover) return;
@@ -56,13 +56,13 @@ export class PopoverDirective implements OnChanges {
     }
 
     ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-        if (changes["popoverDisabled"]) {
-            if (changes["popoverDisabled"].currentValue) {
+        if (changes['popoverDisabled']) {
+            if (changes['popoverDisabled'].currentValue) {
                 this.hide();
             }
         }
     }
-    
+
 
     public toggle() {
         if (!this.visible) {
@@ -76,7 +76,7 @@ export class PopoverDirective implements OnChanges {
         if (this.visible) return;
 
         this.visible = true;
-        if (typeof this.content === "string") {
+        if (typeof this.content === 'string') {
             const factory = this.resolver.resolveComponentFactory(this.PopoverComponent);
             if (!this.visible)
                 return;
@@ -146,7 +146,7 @@ export class PopoverDirective implements OnChanges {
 
 
 @Component({
-    selector: "popover-content",
+    selector: 'popover-content',
     template: `
         <div #popoverDiv class="popover {{ effectivePlacement }}"
             [style.top]="top + 'px'"
@@ -156,14 +156,14 @@ export class PopoverDirective implements OnChanges {
             style="display: block"
             role="popover">
             <div [hidden]="!closeOnMouseOutside" class="virtual-area"></div>
-            <div class="arrow"></div> 
+            <div class="arrow"></div>
             <h3 class="popover-title" [hidden]="!title">{{ title }}</h3>
             <div class="popover-content">
                 <ng-content></ng-content>
                 {{ content }}
-            </div> 
+            </div>
         </div>
-`,
+    `,
     styles: [`
         .popover .virtual-area {
             height: 11px;
@@ -171,62 +171,62 @@ export class PopoverDirective implements OnChanges {
             position: absolute;
         }
         .popover.top .virtual-area {
-            bottom: -11px; 
+            bottom: -11px;
         }
         .popover.bottom .virtual-area {
-            top: -11px; 
+            top: -11px;
         }
         .popover.left .virtual-area {
-            right: -11px; 
+            right: -11px;
         }
         .popover.right .virtual-area {
-            left: -11px; 
+            left: -11px;
         }
-`]
+    `]
 })
 export class PopoverContentComponent implements AfterViewInit, OnDestroy {
     @Input() content: string;
-    @Input() placement: "top" | "bottom" | "left" | "right" | "auto" | "auto top" | "auto bottom" | "auto left" | "auto right" = "bottom";
+    @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'auto top' | 'auto bottom' | 'auto left' | 'auto right' = 'bottom';
     @Input() title: string;
     @Input() animation: boolean = true;
     @Input() closeOnClickOutside: boolean = false;
     @Input() closeOnMouseOutside: boolean = false;
 
-    @ViewChild("popoverDiv") popoverDiv: ElementRef;
+    @ViewChild('popoverDiv') popoverDiv: ElementRef;
 
     popover: PopoverDirective;
     onCloseFromOutside = new EventEmitter();
     top: number = -10000;
     left: number = -10000;
     isIn: boolean = false;
-    displayType: string = "none";
+    displayType: string = 'none';
     effectivePlacement: string;
-    
+
     onDocumentMouseDown = (event: any) => {
         const element = this.element.nativeElement;
         if (!element || !this.popover) return;
         if (element.contains(event.target) || this.popover.getElement().contains(event.target)) return;
         this.hide();
         this.onCloseFromOutside.emit(undefined);
-    };
+    }
 
     constructor(
         protected element: ElementRef,
         protected cdr: ChangeDetectorRef,
         protected renderer: Renderer
     ) { }
-    
+
 
     listenClickFunc: any;
     listenMouseFunc: any;
 
     ngAfterViewInit(): void {
         if (this.closeOnClickOutside) {
-            this.listenClickFunc = this.renderer.listenGlobal("document", "mousedown", (event: any) => this.onDocumentMouseDown(event));
+            this.listenClickFunc = this.renderer.listenGlobal('document', 'mousedown', (event: any) => this.onDocumentMouseDown(event));
         }
 
         if (this.closeOnMouseOutside) {
-            this.listenMouseFunc = this.renderer.listenGlobal("document", "mouseover", (event: any) => this.onDocumentMouseDown(event));
+            this.listenMouseFunc = this.renderer.listenGlobal('document', 'mouseover', (event: any) => this.onDocumentMouseDown(event));
         }
 
         this.show();
@@ -240,14 +240,14 @@ export class PopoverContentComponent implements AfterViewInit, OnDestroy {
         if (this.closeOnMouseOutside)
             this.listenMouseFunc();
     }
-    
+
 
     public show(): void {
         if (!this.popover || !this.popover.getElement())
             return;
 
         const p = this.positionElements(this.popover.getElement(), this.popoverDiv.nativeElement, this.placement);
-        this.displayType = "block";
+        this.displayType = 'block';
         this.top = p.top;
         this.left = p.left;
         this.isIn = true;
@@ -265,12 +265,12 @@ export class PopoverContentComponent implements AfterViewInit, OnDestroy {
         this.left = -10000;
         this.isIn = true;
     }
-    
+
 
     protected positionElements(hostEl: HTMLElement, targetEl: HTMLElement, positionStr: string, appendToBody: boolean = false): { top: number, left: number } {
-        let positionStrParts = positionStr.split("-");
+        let positionStrParts = positionStr.split('-');
         let pos0 = positionStrParts[0];
-        let pos1 = positionStrParts[1] || "center";
+        let pos1 = positionStrParts[1] || 'center';
         let hostElPos = appendToBody ? this.offset(hostEl) : this.position(hostEl);
         let targetElWidth = targetEl.offsetWidth;
         let targetElHeight = targetEl.offsetHeight;
@@ -303,21 +303,21 @@ export class PopoverContentComponent implements AfterViewInit, OnDestroy {
 
         let targetElPos: { top: number, left: number };
         switch (pos0) {
-            case "right":
+            case 'right':
                 targetElPos = {
                     top: shiftHeight[pos1](),
                     left: shiftWidth[pos0]()
                 };
                 break;
 
-            case "left":
+            case 'left':
                 targetElPos = {
                     top: shiftHeight[pos1](),
                     left: hostElPos.left - targetElWidth
                 };
                 break;
 
-            case "bottom":
+            case 'bottom':
                 targetElPos = {
                     top: shiftHeight[pos0](),
                     left: shiftWidth[pos1]()
@@ -375,7 +375,7 @@ export class PopoverContentComponent implements AfterViewInit, OnDestroy {
     }
 
     protected isStaticPositioned(nativeEl: HTMLElement): boolean {
-        return (this.getStyle(nativeEl, "position") || "static") === "static";
+        return (this.getStyle(nativeEl, 'position') || 'static') === 'static';
     }
 
     protected parentOffsetEl(nativeEl: HTMLElement): any {
@@ -387,26 +387,26 @@ export class PopoverContentComponent implements AfterViewInit, OnDestroy {
     }
 
     protected getEffectivePlacement(placement: string, hostElement: HTMLElement, targetElement: HTMLElement): string {
-        const placementParts = placement.split(" ");
-        if (placementParts[0] !== "auto") {
+        const placementParts = placement.split(' ');
+        if (placementParts[0] !== 'auto') {
             return placement;
         }
 
         const hostElBoundingRect = hostElement.getBoundingClientRect();
 
-        const desiredPlacement = placementParts[1] || "bottom";
+        const desiredPlacement = placementParts[1] || 'bottom';
 
-        if (desiredPlacement === "top" && hostElBoundingRect.top - targetElement.offsetHeight < 0) {
-            return "bottom";
+        if (desiredPlacement === 'top' && hostElBoundingRect.top - targetElement.offsetHeight < 0) {
+            return 'bottom';
         }
-        if (desiredPlacement === "bottom" && hostElBoundingRect.bottom + targetElement.offsetHeight > window.innerHeight) {
-            return "top";
+        if (desiredPlacement === 'bottom' && hostElBoundingRect.bottom + targetElement.offsetHeight > window.innerHeight) {
+            return 'top';
         }
-        if (desiredPlacement === "left" && hostElBoundingRect.left - targetElement.offsetWidth < 0) {
-            return "right";
+        if (desiredPlacement === 'left' && hostElBoundingRect.left - targetElement.offsetWidth < 0) {
+            return 'right';
         }
-        if (desiredPlacement === "right" && hostElBoundingRect.right + targetElement.offsetWidth > window.innerWidth) {
-            return "left";
+        if (desiredPlacement === 'right' && hostElBoundingRect.right + targetElement.offsetWidth > window.innerWidth) {
+            return 'left';
         }
 
         return desiredPlacement;

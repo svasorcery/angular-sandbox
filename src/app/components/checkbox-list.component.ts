@@ -15,11 +15,11 @@ export class CheckboxListItem implements ListItem {
     selector: 'checkbox-list',
     template: `
         <ul class="list-group">
-            <li *ngFor="let item of items" 
-                (click)="toggleItem(item)" 
-                class="list-group-item" 
+            <li *ngFor="let item of items"
+                (click)="toggleItem(item)"
+                class="list-group-item"
                 [class.selected]="item.selected">
-                <input type="checkbox" 
+                <input type="checkbox"
                     [checked]="item.selected" />
                 {{ item.name }}
             </li>
@@ -43,29 +43,29 @@ export class CheckboxListComponent implements OnInit {
 
     constructor() { }
 
-    ngOnInit() { 
-        if (!this.inputItems)
-            return;
+    ngOnInit() {
+        if (!this.inputItems) { return; }
 
         this.items = this.inputItems.map(i => new CheckboxListItem(i.name, false));
 
-        if (!this.inputIndexes || this.inputIndexes.length === 0 )
+        if (!this.inputIndexes || this.inputIndexes.length === 0 ) {
             return;
+        }
 
         this.inputIndexes.forEach(i => this.toggleItem(this.items[i]));
     }
 
     public toggleItem(item: CheckboxListItem): void {
-        if (!item) return;
+        if (!item) { return; }
 
         item.selected = !item.selected;
         this.emitUpdate();
     }
 
     private emitUpdate(): void {
-        if (!this.items) return;
+        if (!this.items) { return; }
 
-        let selected = this.items.filter(i => i.selected);
+        const selected = this.items.filter(i => i.selected);
         this.onSelectItems.emit(selected);
         this.onSelectIndexes.emit(selected.map(i => this.items.indexOf(i)));
     }

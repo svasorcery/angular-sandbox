@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Observable, Subscription, Subject } from "rxjs";
+import { Observable, Subscription, Subject } from 'rxjs';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
@@ -14,14 +14,14 @@ export interface IAutoCompleteListSource {
     selector: 'autocomplete',
     template: `
         <div class="autocomplete" [ngClass]="{ 'open': items && items.length }">
-            <input type="text" 
+            <input type="text"
                 [(ngModel)]="label"
-                [attr.placeholder]="placeholder" 
-                [disabled]="!source"  
-                (keyup)="search($event, term.value)" 
-                (keydown)="onKeyDown($event)" 
-                (blur)="leave()" 
-                class="form-control" 
+                [attr.placeholder]="placeholder"
+                [disabled]="!source"
+                (keyup)="search($event, term.value)"
+                (keydown)="onKeyDown($event)"
+                (blur)="leave()"
+                class="form-control"
                 #term />
             <span *ngIf="loading" class="fa fa-spinner fa-pulse text-muted"></span>
             <span *ngIf="(!hasError) && (!loading) && (data == null)" class="fa fa-question text-muted"></span>
@@ -41,60 +41,60 @@ export interface IAutoCompleteListSource {
             multi: true,
         }
     ],
-    styles: [ `
-        input::-ms-clear { 
-            display: none; 
+    styles: [`
+        input::-ms-clear {
+            display: none;
         }
-        
+
         .autocomplete {
             position: relative;
         }
-        
+
         .open input {
             border-color: white;
             z-index: 2001;
         }
-            
+
         .open input:focus {
             border-color: white;
             box-shadow: none;
         }
-        
-        .list-group { 
+
+        .list-group {
             top: 0px;
-            position:absolute; 
-            width: 100%; 
-            z-index: 1000; 
+            position:absolute;
+            width: 100%;
+            z-index: 1000;
             border: 1px solid #4189c7;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(red(#4189c7), green(#4189c7), blue(#4189c7), .6);
         }
-        
+
         .list-group-item:first-child {
             margin-top: 34px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-        
-        .list-group-item { 
-            cursor:pointer; 
+
+        .list-group-item {
+            cursor:pointer;
             padding-left: 12px;
             border-color: transparent;
             border-top-color: gray;
         }
-        
-        .fa { 
-            position: absolute; 
-            right: 6px; 
-            top: 6px; 
-            font-size: 150%; 
+
+        .fa {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            font-size: 150%;
         }
-        
-        .list-group-item:hover, .list-group-item.hover { 
-            border-color: #4189c7;  
-            background: #4189c7; 
+
+        .list-group-item:hover, .list-group-item.hover {
+            border-color: #4189c7;
+            background: #4189c7;
             color: white;
-        }` 
-    ]
+        }
+    `]
 })
 export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAccessor {
     @Input() source: IAutoCompleteListSource;
@@ -111,16 +111,14 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
     public minTermLength: number = 2;
     public label: string = null;
     public loading: boolean = false;
-    public hasError: boolean = false;    
+    public hasError: boolean = false;
 
     private sub: Subscription;
     private searchTermStream: Subject<string> = new Subject<string>();
     private nonInteractiveSearch: boolean = false;
 
-    
-    constructor() {
 
-    }
+    constructor() { }
 
     ngOnInit(): void {
         this.sub = this.searchTermStream
@@ -134,17 +132,16 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
             })
             .subscribe(
                 items => {
-                    if (this.nonInteractiveSearch == true) {
+                    if (this.nonInteractiveSearch === true) {
                         this.nonInteractiveSearch = false;
                         if (items.length > 0) {
                             this.select(items[0]);
                         }
-                    }
-                    else {
+                    } else {
                         this.items = items;
                     }
                     this.loading = false;
-                }, 
+                },
                 error => {
                     this.loading = false;
                     this.hasError = true;
@@ -152,7 +149,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
 
         if (this.searchOnInit) {
             this.nonInteractiveSearch = true;
-            this.searchTermStream.next(this.searchOnInit); 
+            this.searchTermStream.next(this.searchOnInit);
         }
     }
 
@@ -161,22 +158,22 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
 
-    public search(event: any, term: string): void { 
-        if (event.key == 'Escape' || event.key == 'Enter' || event.key == 'Tab') {
+    public search(event: any, term: string): void {
+        if (event.key === 'Escape' || event.key === 'Enter' || event.key === 'Tab') {
             return;
         }
 
-        if (this.data && this.data["name"] && this.data.name != term) {
+        if (this.data && this.data['name'] && this.data.name !== term) {
             this.data = null;
             this.propagateChange(null);
         }
 
         if (this.source != null) {
-            this.searchTermStream.next(term); 
+            this.searchTermStream.next(term);
         }
     }
-    
-    public select(item: {name:string}): void {
+
+    public select(item: { name: string }): void {
         this.items = [];
         this.data = item;
         this.hover = null;
@@ -187,10 +184,9 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     public leave(): void {
-        if( this.data && this.data['name']) {
+        if (this.data && this.data['name']) {
             this.label = this.data['name'];
-        }
-        else {
+        } else {
             this.label = '';
         }
 
@@ -200,9 +196,8 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
     }
 
     public onKeyDown(event: any): boolean {
-        if (event.key == 'Tab')
-        {
-            if (this.items && this.items.length == 1) {
+        if (event.key === 'Tab') {
+            if (this.items && this.items.length === 1) {
                 this.select(this.items[0]);
                 return false;
             }
@@ -210,8 +205,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
             if (this.items && this.items.length > 0) {
                 if (this.hover == null) {
                     this.hoverIndex = 0;
-                }
-                else {
+                } else {
                     this.hoverIndex ++;
                 }
 
@@ -221,24 +215,20 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
                 this.hover = this.items[this.hoverIndex];
             }
 
-            if ((this.items == null || this.items.length == 0) && !this.loading)
-            {
+            if ((this.items == null || this.items.length === 0) && !this.loading) {
                 return true;
             }
 
             return false;
-        }
-        else if (event.key == 'Escape') {
+        } else if (event.key === 'Escape') {
             this.items = [];
             return false;
-        }
-        else if (event.key == 'Enter') {
+        } else if (event.key === 'Enter') {
             if (this.hover != null) {
                 this.select(this.hover);
                 return false;
             }
-        }
-        else if (event.key == 'ArrowDown') {
+        } else if (event.key === 'ArrowDown') {
             if (this.items && this.items.length > 0) {
                 this.hoverIndex ++;
                 if (this.hoverIndex >= this.items.length) {
@@ -247,8 +237,7 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
                 this.hover = this.items[this.hoverIndex];
             }
             return false;
-        }
-        else if (event.key == 'ArrowUp') {
+        } else if (event.key === 'ArrowUp') {
             if (this.items && this.items.length > 0) {
                 this.hoverIndex --;
                 if (this.hoverIndex < 0) {
@@ -264,30 +253,17 @@ export class AutoCompleteComponent implements OnInit, OnDestroy, ControlValueAcc
 
 
     /* --- ControlValueAccessor -- */
-
-    private propagateChange = (_: any) => { 
-
-    };
-
     writeValue = (obj: any) => {
         this.data = obj;
-        if (obj && obj["name"]) {
+        if (obj && obj['name']) {
             this.label = obj.name;
-        }
-        else {
+        } else {
             this.label = '';
         }
     }
 
-    registerOnChange = (fn: any) => {
-        this.propagateChange = fn;
-    }
-
-    registerOnTouched = (fn: any) => {
-        
-    }
-
-    setDisabledState = (isDisabled: boolean) => {
-        
-    }
+    private propagateChange = (_: any) => { };
+    registerOnChange = (fn: any) => this.propagateChange = fn;
+    registerOnTouched = (fn: any) => { };
+    setDisabledState = (isDisabled: boolean) => { };
 }

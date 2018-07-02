@@ -14,7 +14,7 @@ export class ErrorsHandler implements ErrorHandler {
         const router = this.injector.get(Router);
 
         if (error instanceof HttpErrorResponse) {
-            // Server error happened      
+            // Server error happened
             if (!navigator.onLine) {
                 // No Internet connection
                 return notification.notify(new ApiError(503, 'Service Unavailable', 'No Internet Connection'));
@@ -25,10 +25,10 @@ export class ErrorsHandler implements ErrorHandler {
             if (error.status === 401) {
                 router.navigate(['/account', 'login']);
             }
-            let errorData = error.error.code ? error.error : ApiError.fromHttpErrorResponse(error);
+            const errorData = error.error.code ? error.error : ApiError.fromHttpErrorResponse(error);
             return notification.notify(errorData);
         } else {
-            // Client Error happend      
+            // Client Error happend
             router.navigate(['/error'], { queryParams: { error: error } });
         }
         // Log the error anyway

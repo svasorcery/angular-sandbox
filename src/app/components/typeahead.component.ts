@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy, forwardRef, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Observable, Subscription, Subject } from "rxjs";
+import { Observable, Subscription, Subject } from 'rxjs';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/switchMap';
@@ -14,14 +14,14 @@ export interface ITypeAheadListSource {
     selector: 'typeahead',
     template: `
         <div class="typeahead" [ngClass]="{'open': items && items.length }">
-            <input type="text" 
-                [attr.placeholder]="placeholder" 
-                [disabled]="!source" 
+            <input type="text"
+                [attr.placeholder]="placeholder"
+                [disabled]="!source"
                 [(ngModel)]="data"
-                (keyup)="search($event, term.value)" 
-                (keypress)="onKeyPress($event)" 
-                (blur)="leave()" 
-                class="form-control" 
+                (keyup)="search($event, term.value)"
+                (keypress)="onKeyPress($event)"
+                (blur)="leave()"
+                class="form-control"
                 #term />
             <ul *ngIf="items && items.length" class="list-group">
                 <li *ngFor="let item of items" (click)="select(item)" [ngClass]="{ 'list-group-item':true, 'hover':item == hover }">
@@ -32,60 +32,60 @@ export interface ITypeAheadListSource {
             <span *ngIf="hasError" class="fa fa-exclamation-triangle text-danger"></span>
         </div>
     `,
-    styles: [ `
-        input::-ms-clear { 
-            display: none; 
+    styles: [`
+        input::-ms-clear {
+            display: none;
         }
-        
+
         .typeahead {
             position: relative;
         }
-        
+
         .open input {
             border-color: white;
             z-index: 2001;
         }
-            
+
         .open input:focus {
             border-color: white;
             box-shadow: none;
         }
-        
-        .list-group { 
+
+        .list-group {
             top: 0px;
-            position:absolute; 
-            width: 100%; 
-            z-index: 1000; 
+            position:absolute;
+            width: 100%;
+            z-index: 1000;
             border: 1px solid #4189c7;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(red(#4189c7), green(#4189c7), blue(#4189c7), .6);
         }
-        
+
         .list-group-item:first-child {
             margin-top: 34px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-        
-        .list-group-item { 
-            cursor:pointer; 
+
+        .list-group-item {
+            cursor:pointer;
             padding-left: 12px;
             border-color: transparent;
             border-top-color: gray;
         }
-        
-        .fa { 
-            position: absolute; 
-            right: 6px; 
-            top: 6px; 
-            font-size: 150%; 
+
+        .fa {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            font-size: 150%;
         }
-        
-        .list-group-item:hover, .list-group-item.hover { 
-            border-color: #4189c7;  
-            background: #4189c7; 
+
+        .list-group-item:hover, .list-group-item.hover {
+            border-color: #4189c7;
+            background: #4189c7;
             color: white;
-        }` 
-    ],
+        }
+    `],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -110,9 +110,7 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
     private obs: Observable<{ name: string }[]>;
 
 
-    constructor() {
-
-    }
+    constructor() { }
 
     ngOnInit(): void {
         this.searchTermStream = new Subject<string>();
@@ -124,7 +122,7 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
             .switchMap((term: string) => {
                 this.loading = true;
                 this.hasError = false;
-                return this.source.search(term)
+                return this.source.search(term);
             });
 
         this.obs
@@ -139,7 +137,7 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
 
 
     search(event: any, term: string) {
-        if (event.key == 'Escape' || event.key == 'Tab') {
+        if (event.key === 'Escape' || event.key === 'Tab') {
             return;
         }
 
@@ -174,19 +172,18 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
     }
 
     onKeyPress(event: any): boolean {
-        if (event.key == 'Tab') {
+        if (event.key === 'Tab') {
             if (this.items && this.items.length > 0) {
                 this.select(this.items[0]);
                 return false;
             }
 
-            if ((this.items == null || this.items.length == 0) && !this.loading) {
+            if ((this.items == null || this.items.length === 0) && !this.loading) {
                 return true;
             }
 
             return false;
-        }
-        else if (event.key == 'Escape') {
+        } else if (event.key === 'Escape') {
             this.clearItems();
             return false;
         }
@@ -196,24 +193,9 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
 
 
     /* --- ControlValueAccessor -- */
-
-    private propagateChange = (_: any) => {
-        
-    };
-
-    writeValue = (obj: any) => {
-        this.data = obj;
-    }
-
-    registerOnChange = (fn: any) => {
-        this.propagateChange = fn;
-    }
-
-    registerOnTouched = (fn: any) => {
-        
-    }
-
-    setDisabledState = (isDisabled: boolean) => {
-        
-    }
+    writeValue = (obj: any) => this.data = obj;
+    private propagateChange = (_: any) => { };
+    registerOnChange = (fn: any) => this.propagateChange = fn;
+    registerOnTouched = (fn: any) => { };
+    setDisabledState = (isDisabled: boolean) => { };
 }

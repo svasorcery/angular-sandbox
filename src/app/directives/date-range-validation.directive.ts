@@ -31,7 +31,7 @@ export class DateRangeValidationDirective implements Validator, OnInit {
             return {
                 required: false,
                 message: 'Выберите дату.'
-            }
+            };
         }
 
         if (c.value && (c.value.getTime() < this.min.getTime())) {
@@ -54,17 +54,17 @@ export class DateRangeValidationDirective implements Validator, OnInit {
 
 export class CalculateDate {
     public static addDaysFromToday(count: number): Date {
-        var today = new Date();
+        let today = new Date();
         return new Date(today.setDate(today.getDate() + count));
     }
 
     public static addMonthsFromToday(count: number): Date {
-        var today = new Date();
+        let today = new Date();
         return new Date(today.setMonth(today.getMonth() + count));
     }
 
     public static addYearsFromToday(count: number): Date {
-        var today = new Date();
+        let today = new Date();
         return new Date(today.setFullYear(today.getFullYear() + count));
     }
-} 
+}

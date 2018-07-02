@@ -9,7 +9,7 @@ export class NotificationService {
     private _notification: BehaviorSubject<string>;
     readonly notification$: Observable<any>;
 
-    constructor() { 
+    constructor() {
         this._notification = new BehaviorSubject(null);
         this.notification$ = this._notification.asObservable().publish().refCount();
     }

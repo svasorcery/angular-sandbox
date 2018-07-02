@@ -1,5 +1,4 @@
 import { Directive, ElementRef, OnInit, Input, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 @Directive({
     selector: '[disableIfUnauthorized]'

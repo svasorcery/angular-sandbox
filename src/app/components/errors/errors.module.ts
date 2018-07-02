@@ -32,6 +32,6 @@ import { ServerErrorsInterceptor } from './server-errors.interceptor';
 
     ],
 })
-export class ErrorsModule { 
+export class ErrorsModule {
 
 }
