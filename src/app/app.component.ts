@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { ApiError } from './components/errors/errors.models';
 import { NotificationService } from './components/errors/notification.service';
@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     private railApiBaseUrl: string = 'http://localhost:55101';
     apiError: ApiError;
 
-    constructor(http: Http, private _notification: NotificationService) {
+    constructor(http: HttpClient, private _notification: NotificationService) {
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
         this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
     }

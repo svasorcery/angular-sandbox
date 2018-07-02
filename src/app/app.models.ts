@@ -1,4 +1,4 @@
-import { Http, URLSearchParams, Response } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -11,8 +11,8 @@ export class RailStation {
     location: Location;
 }
 
-class Location { 
-    country: string; 
+class Location {
+    country: string;
     region: string;
     railway: string;
     latitude: number;
@@ -20,15 +20,12 @@ class Location {
 }
 
 export class RailStationsListSource implements IAutoCompleteListSource {
-
-    constructor(private http: Http, private baseUrl: string) { }
-
-    search(term: string): Observable<{ name: string }[]> {
-        let params = new URLSearchParams();
-        params.set('term', term);
-        return this.http.get(this.baseUrl + '/api/stations', { search: params })
-            .map((response: Response) => response.json() as RailStation[]);
-    }
+    constructor(private _http: HttpClient, private baseUrl: string) { }
+    search = (term: string): Observable<{ name: string }[]> =>
+        this._http.get<RailStation[]>(
+            this.baseUrl + '/api/stations',
+            { params: new HttpParams().set('term', term) }
+        )
 }
 
 
@@ -43,14 +40,11 @@ export class Country {
 }
 
 export class CountriesListSource implements ITypeAheadListSource {
-
-    constructor(private http: Http, private baseUrl: string) { }
-
-    search(term: string): Observable<{ name: string }[]> {
-        let params = new URLSearchParams();
-        params.set('term', term);
-        return this.http.get(this.baseUrl + '/api/countries', { search: params })
-            .map((response: Response) => (response.json() as { nameRu: string, nameEn: string, alpha2: string }[])
-                .map(data => new Country(data.nameRu, data.nameEn, data.alpha2)));
-    }
+    constructor(private _http: HttpClient, private baseUrl: string) { }
+    search = (term: string): Observable<{ name: string }[]> =>
+        this._http.get<{ nameRu: string, nameEn: string, alpha2: string }[]>(
+            this.baseUrl + '/api/countries',
+            { params: new HttpParams().set('term', term) }
+        )
+        .map(countries => countries.map(c => new Country(c.nameRu, c.nameEn, c.alpha2)))
 }

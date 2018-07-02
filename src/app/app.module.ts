@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
@@ -37,7 +37,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
         BrowserModule,
         CommonModule,
         FormsModule,
-        HttpModule,
+        HttpClientModule,
         ErrorsModule,
         RouterModule
     ],
