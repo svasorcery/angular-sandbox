@@ -27,6 +27,7 @@ import { FileReadComponent } from './components/file-read.component';
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
 import { PopoverDirective } from './components/popover.component';
 //import { AuthorizationService, AccountService, DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -60,6 +61,7 @@ import { FileSizePipe } from './pipes/file-size.pipe';
         DateRangeValidationDirective,
         //DisableIfUnauthorizedDirective,
         //HideIfUnauthorizedDirective,
+        AutofocusDirective,
 
         FilterPipe,
         FileSizePipe
