@@ -23,10 +23,14 @@ import { CheckboxListComponent } from './components/checkbox-list.component';
 import { FileUploadComponent } from './components/file-upload.component';
 import { FileReadComponent } from './components/file-read.component';
 
+// services
+//import { AuthorizationService, AccountService } from './directives/auth.directive';
+import { StorageService } from './services/storage.service';
+
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
 import { PopoverDirective } from './components/popover.component';
-//import { AuthorizationService, AccountService, DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
+//import { DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
 
 // pipes
@@ -68,7 +72,8 @@ import { FileSizePipe } from './pipes/file-size.pipe';
     ],
     providers: [
         //AuthorizationService,
-        //AccountService
+        //AccountService,
+        StorageService
     ],
     bootstrap: [
         AppComponent
