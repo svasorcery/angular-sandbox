@@ -36,6 +36,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
     imports: [
@@ -68,7 +69,8 @@ import { FileSizePipe } from './pipes/file-size.pipe';
         AutofocusDirective,
 
         FilterPipe,
-        FileSizePipe
+        FileSizePipe,
+        SafePipe
     ],
     providers: [
         //AuthorizationService,
