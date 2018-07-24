@@ -27,6 +27,7 @@ import { FileReadComponent } from './components/file-read.component';
 //import { AuthorizationService, AccountService } from './directives/auth.directive';
 import { StorageService } from './services/storage.service';
 import { LanguageService } from './services/language.service';
+import { NotificationService } from './services/notification.service';
 
 // directives
 import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
@@ -77,7 +78,8 @@ import { SafePipe } from './pipes/safe.pipe';
         //AuthorizationService,
         //AccountService,
         StorageService,
-        LanguageService
+        LanguageService,
+        NotificationService
     ],
     bootstrap: [
         AppComponent
