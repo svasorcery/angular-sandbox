@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 import { StorageService } from './storage.service';
 
@@ -35,9 +36,14 @@ export class LanguageService {
     private _notification: Subject<Language>;
     readonly changed$: Observable<Language>;
 
-    constructor(private _storage: StorageService) {
+    constructor(
+        private _storage: StorageService,
+        private _translate: TranslateService
+    ) {
         this._notification = new Subject();
         this.changed$ = this._notification.asObservable();
+
+        this._translate.setDefaultLang(Language.default.code.toLowerCase());
 
         const lang = this._storage.contains('lang') ?
             _storage.retrieve<Language>('lang') :
@@ -56,6 +62,7 @@ export class LanguageService {
         const value = typeof(lang) === 'string' ? Language.byCode(lang) : lang as Language;
         if (!value) { return; }
         this._storage.store('lang', value.code);
+        this._translate.use(value.code.toLowerCase());
         this.notify(value);
     }
 
