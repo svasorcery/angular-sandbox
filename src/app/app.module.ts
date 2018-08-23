@@ -39,6 +39,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
+import { CreditCardValidator } from './validators/credit-card-number.validator';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -88,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         AutofocusDirective,
 
         DateRangeValidator,
+        CreditCardValidator,
 
         FilterPipe,
         FileSizePipe,
