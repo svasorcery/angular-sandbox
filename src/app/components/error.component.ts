@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { ApiError } from '../components/errors/errors.models';
+import { ApiError } from './errors/errors.models';
 
 @Component({
     selector: 'error',

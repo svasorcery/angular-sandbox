@@ -33,10 +33,12 @@ import { LanguageService } from './services/language.service';
 import { NotificationService } from './services/notification.service';
 
 // directives
-import { DateRangeValidationDirective } from './directives/date-range-validation.directive';
 import { PopoverDirective } from './components/popover.component';
 //import { DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
+
+// validation directives
+import { DateRangeValidator } from './validators/date-range.validator';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -81,10 +83,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         FileReadComponent,
 
         PopoverDirective,
-        DateRangeValidationDirective,
         //DisableIfUnauthorizedDirective,
         //HideIfUnauthorizedDirective,
         AutofocusDirective,
+
+        DateRangeValidator,
 
         FilterPipe,
         FileSizePipe,

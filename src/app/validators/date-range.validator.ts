@@ -4,10 +4,10 @@ import { AbstractControl, Validator, NG_VALIDATORS, ValidationErrors } from '@an
 @Directive({
     selector: '[validateDateRange]',
     providers: [
-        { provide: NG_VALIDATORS, useExisting: forwardRef(() => DateRangeValidationDirective), multi: true }
+        { provide: NG_VALIDATORS, useExisting: forwardRef(() => DateRangeValidator), multi: true }
     ]
 })
-export class DateRangeValidationDirective implements Validator, OnInit {
+export class DateRangeValidator implements Validator, OnInit {
     @Input('validateDateRange') options: any = {};
 
     public required: boolean;
@@ -15,7 +15,7 @@ export class DateRangeValidationDirective implements Validator, OnInit {
     public max: Date;
 
     private minDefault: Date = CalculateDate.addYearsFromToday(-150);
-    private maxDefault: Date = CalculateDate.addDaysFromToday(-1)
+    private maxDefault: Date = CalculateDate.addDaysFromToday(-1);
 
     constructor() { }
 
