@@ -16,8 +16,8 @@ import { ErrorsModule } from './components/errors/errors.module';
 import { SpinnerComponent } from './components/spinner.component';
 import { ErrorComponent } from './components/error.component';
 import { BreadcrumbComponent } from './components/breadcrumb.component';
-import { AutoCompleteComponent } from './components/autocomplete.component';
-import { TypeAheadComponent } from './components/typeahead.component';
+//import { AutoCompleteComponent } from './components/autocomplete.component';
+//import { TypeAheadComponent } from './components/typeahead.component';
 import { DatePickerComponent } from './components/datepicker.component';
 import { ModalComponent } from './components/modal.component';
 import { PopoverContentComponent } from './components/popover.component';
@@ -73,8 +73,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         SpinnerComponent,
         ErrorComponent,
         BreadcrumbComponent,
-        AutoCompleteComponent,
-        TypeAheadComponent,
+        //AutoCompleteComponent,
+        //TypeAheadComponent,
         DatePickerComponent,
         ModalComponent,
         PopoverContentComponent,

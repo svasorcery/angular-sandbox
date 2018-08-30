@@ -21,11 +21,11 @@ import { ServerErrorsInterceptor } from './server-errors.interceptor';
           provide: ErrorHandler,
           useClass: ErrorsHandler,
         },
-        {
+        /*{
           provide: HTTP_INTERCEPTORS,
           useClass: ServerErrorsInterceptor,
           multi: true
-        },
+        },*/
         NotificationService
     ],
     exports: [
