@@ -100,4 +100,16 @@ export class AppComponent implements OnInit {
 
     /* toggle-switch */
     switchOn: boolean = true;
+
+    /* clipboard */
+    public logSuccess(value: string): void {
+        console.group('Clipboard Success');
+        console.log(value);
+        console.groupEnd();
+    }
+    public logError(error: Error): void {
+        console.group('Clipboard Error');
+        console.error(error);
+        console.groupEnd();
+    }
 }

@@ -31,11 +31,13 @@ import { FileReadComponent } from './components/file-read.component';
 import { StorageService } from './services/storage.service';
 import { LanguageService } from './services/language.service';
 import { NotificationService } from './services/notification.service';
+import { ClipboardService } from './directives/clipboard.directive';
 
 // directives
 import { PopoverDirective } from './components/popover.component';
 //import { DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { ClipboardDirective } from './directives/clipboard.directive';
 
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
@@ -87,6 +89,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         //DisableIfUnauthorizedDirective,
         //HideIfUnauthorizedDirective,
         AutofocusDirective,
+        ClipboardDirective,
 
         DateRangeValidator,
         CreditCardValidator,
@@ -100,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         //AccountService,
         StorageService,
         LanguageService,
-        NotificationService
+        NotificationService,
+        ClipboardService
     ],
     bootstrap: [
         AppComponent

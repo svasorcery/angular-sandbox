@@ -128,6 +128,19 @@
         <file-read></file-read>
     </div>
 
+    <div class="col-md-3">
+        <button
+            [clipboard]="copyvalue.innerHTML.trim()"
+            (clipboardCopy)="logSuccess($event)"
+            (clipboardError)="logError($event)"
+            class="btn btn-default">
+            Copy Text
+        </button>
+        <span #copyvalue>
+            Hello World!
+        </span>
+    </div>
+
     <modal [(visible)]="modal" (visibleChanged)="hideModal()" header="Modal header" [wide]="true">
         <!-- on data retrieved -->
         <h4 *ngIf="modalContent">
