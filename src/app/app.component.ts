@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { ApiError } from './components/errors/errors.models';
 import { NotificationService } from './components/errors/notification.service';
+import { RoutingStateService } from './services/routing-state.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
 import { ListItem } from './components/checkbox-list.component';
 
@@ -15,9 +16,18 @@ export class AppComponent implements OnInit {
     private railApiBaseUrl: string = 'http://localhost:55101';
     apiError: ApiError;
 
-    constructor(http: HttpClient, private _notification: NotificationService) {
+    /* previous routing state */
+    prevState: string = '';
+
+    constructor(
+        http: HttpClient,
+        private _notification: NotificationService,
+        private _routingState: RoutingStateService
+    ) {
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
         this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
+        this._routingState.loadRouting();
+        this.prevState = this._routingState.getPreviousUrl();
     }
 
     ngOnInit() {

@@ -31,6 +31,7 @@ import { FileReadComponent } from './components/file-read.component';
 import { StorageService } from './services/storage.service';
 import { LanguageService } from './services/language.service';
 import { NotificationService } from './services/notification.service';
+import { RoutingStateService } from './services/routing-state.service';
 import { ClipboardService } from './directives/clipboard.directive';
 
 // directives
@@ -104,7 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         StorageService,
         LanguageService,
         NotificationService,
-        ClipboardService
+        ClipboardService,
+        RoutingStateService
     ],
     bootstrap: [
         AppComponent
