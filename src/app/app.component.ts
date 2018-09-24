@@ -122,4 +122,17 @@ export class AppComponent implements OnInit {
         console.error(error);
         console.groupEnd();
     }
+
+    /* status-indicator */
+    status: 'success' | 'warning' | 'danger' = null;
+    statusPulse: boolean = true;
+    toggleStatus = (): void => {
+        switch (this.status) {
+            case 'success': this.status = 'warning'; break;
+            case 'warning': this.status = 'danger'; break;
+            case 'danger': this.status = 'success'; break;
+            default: this.status = 'success'; break;
+        }
+    }
+    toggleStatusPulse = () => this.statusPulse = !this.statusPulse;
 }

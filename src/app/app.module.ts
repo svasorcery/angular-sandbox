@@ -25,6 +25,7 @@ import { ToggleSwitchComponent } from './components/toggle-switch.component';
 import { CheckboxListComponent } from './components/checkbox-list.component';
 import { FileUploadComponent } from './components/file-upload.component';
 import { FileReadComponent } from './components/file-read.component';
+import { StatusIndicatorComponent } from './components/status-indicator.component';
 
 // services
 //import { AuthorizationService, AccountService } from './directives/auth.directive';
@@ -85,6 +86,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CheckboxListComponent,
         FileUploadComponent,
         FileReadComponent,
+        StatusIndicatorComponent,
 
         PopoverDirective,
         //DisableIfUnauthorizedDirective,
