@@ -21,6 +21,7 @@ import { AutoCompleteComponent } from './components/autocomplete.component';
 import { DatePickerComponent } from './components/datepicker.component';
 import { ModalComponent } from './components/modal.component';
 import { PopoverContentComponent } from './components/popover.component';
+import { ComboBoxComponent } from './components/combo-box.component';
 import { ToggleSwitchComponent } from './components/toggle-switch.component';
 import { CheckboxListComponent } from './components/checkbox-list.component';
 import { FileUploadComponent } from './components/file-upload.component';
@@ -81,6 +82,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         DatePickerComponent,
         ModalComponent,
         PopoverContentComponent,
+        ComboBoxComponent,
         ToggleSwitchComponent,
         CheckboxListComponent,
         FileUploadComponent,
