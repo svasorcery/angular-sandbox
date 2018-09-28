@@ -154,4 +154,13 @@
         </i>
     </modal>
 
+    <div class="col-md-2">
+        <a (click)="toggleStatus()" class="btn btn-default">Toggle status</a>
+        <a (click)="toggleStatusPulse()" class="btn btn-default">Status pulse: {{ statusPulse ? 'on' : 'off' }}</a>
+        <status-indicator
+            [value]="status"
+            [pulse]="statusPulse">
+        </status-indicator>
+    </div>
+
 </div>
