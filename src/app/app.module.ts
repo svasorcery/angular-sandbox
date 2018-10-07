@@ -17,7 +17,7 @@ import { SpinnerComponent } from './components/spinner.component';
 import { ErrorComponent } from './components/error.component';
 import { BreadcrumbComponent } from './components/breadcrumb.component';
 import { AutoCompleteComponent } from './components/autocomplete.component';
-//import { TypeAheadComponent } from './components/typeahead.component';
+import { TypeAheadComponent } from './components/typeahead.component';
 import { DatePickerComponent } from './components/datepicker.component';
 import { ModalComponent } from './components/modal.component';
 import { PopoverContentComponent } from './components/popover.component';
@@ -70,7 +70,9 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
         ErrorsModule,
-        RouterModule
+        RouterModule.forRoot([
+            { path: '', component: AppComponent, pathMatch: 'full' }
+        ])
     ],
     declarations: [
         AppComponent,
@@ -79,7 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         ErrorComponent,
         BreadcrumbComponent,
         AutoCompleteComponent,
-        //TypeAheadComponent,
+        TypeAheadComponent,
         DatePickerComponent,
         ModalComponent,
         PopoverContentComponent,

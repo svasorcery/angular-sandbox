@@ -1,9 +1,7 @@
-import { Component, Input, OnInit, OnDestroy, forwardRef, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Observable, Subscription, Subject } from 'rxjs';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/switchMap';
+import { Observable, Subject } from 'rxjs';
+import { switchMap, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 export interface ITypeAheadListSource {
     search(term: string): Observable<{ name: string }[]>;
@@ -100,7 +98,7 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
 
     public data: string = null;
     public items: { name: string }[];
-    public selected: EventEmitter<{ name: string }> = new EventEmitter();
+    @Output() selected: EventEmitter<{ name: string }> = new EventEmitter();
 
     public minTermLength: number = 2;
     public loading: boolean = false;
@@ -116,14 +114,14 @@ export class TypeAheadComponent implements OnInit, ControlValueAccessor {
         this.searchTermStream = new Subject<string>();
         this.selected.emit(null);
         this.obs = this.searchTermStream
-            .filter((term: string) => term.length >= this.minTermLength)
-            .debounceTime(300)
-            .distinctUntilChanged()
-            .switchMap((term: string) => {
+            .pipe(filter((term: string) => term.length >= this.minTermLength))
+            .pipe(debounceTime(300))
+            .pipe(distinctUntilChanged())
+            .pipe(switchMap((term: string) => {
                 this.loading = true;
                 this.hasError = false;
                 return this.source.search(term);
-            });
+            }));
 
         this.obs
             .subscribe(items => {

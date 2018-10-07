@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { IAutoCompleteListSource } from './components/autocomplete.component';
 
@@ -46,5 +46,5 @@ export class CountriesListSource implements ITypeAheadListSource {
             this.baseUrl + '/api/countries',
             { params: new HttpParams().set('term', term) }
         )
-        .map(countries => countries.map(c => new Country(c.nameRu, c.nameEn, c.alpha2)))
+        .pipe(map(countries => countries.map(c => new Country(c.nameRu, c.nameEn, c.alpha2))))
 }

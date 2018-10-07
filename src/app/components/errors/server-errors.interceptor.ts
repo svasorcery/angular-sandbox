@@ -1,8 +1,7 @@
 import { Injectable, ErrorHandler } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/retry';
-import 'rxjs/add/operator/catch';
+import { Observable, empty } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class ServerErrorsInterceptor implements HttpInterceptor {
@@ -12,8 +11,8 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
 
     intercept = (request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> =>
         next.handle(request)
-            /*.catch((error: HttpErrorResponse) => {
+            .pipe(catchError((error: HttpErrorResponse) => {
                 this._handler.handleError(error);
-                return Observable.empty<HttpEvent<any>>();
-            })*/
+                return empty();
+            }))
 }
