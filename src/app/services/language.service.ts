@@ -17,8 +17,7 @@ export class Language {
     public static get all(): Language[] {
         return [
             new Language('RU', 'Русский'),
-            new Language('EN', 'English'),
-            new Language('DE', 'Deutsche')
+            new Language('EN', 'English')
         ];
     }
 
@@ -43,13 +42,13 @@ export class LanguageService {
         this._notification = new Subject();
         this.changed$ = this._notification.asObservable();
 
-        this._translate.setDefaultLang(Language.default.code.toLowerCase());
+        _translate.setDefaultLang(Language.default.code.toLowerCase());
 
-        const lang = this._storage.contains('lang') ?
+        const lang = _storage.contains('lang') ?
             _storage.retrieve<Language>('lang') :
             Language.default;
 
-        this.change(lang);
+        this.setLanguage(lang);
     }
 
     public get current(): Language {
@@ -58,6 +57,18 @@ export class LanguageService {
     }
 
     public change(lang: string | Language): void {
+        this.setLanguage(lang);
+        //window.location.reload();
+    }
+
+    public getTranslation = (key: string | string[]): Observable<string> =>
+        this._translate.get(key)
+
+    public setTranslation = (lang: string, translations: Object, shouldMerge?: boolean): void =>
+        this._translate.setTranslation(lang, translations, shouldMerge)
+
+
+    private setLanguage(lang: string | Language): void {
         if (!lang) { return; }
         const value = typeof(lang) === 'string' ? Language.byCode(lang) : lang as Language;
         if (!value) { return; }

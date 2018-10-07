@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ApiError } from './components/errors/errors.models';
+import { LanguageService, Language } from './services/language.service';
 import { NotificationService } from './components/errors/notification.service';
 import { RoutingStateService } from './services/routing-state.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
@@ -21,9 +22,11 @@ export class AppComponent implements OnInit {
 
     constructor(
         http: HttpClient,
+        private _lang: LanguageService,
         private _notification: NotificationService,
         private _routingState: RoutingStateService
     ) {
+        this.langListSource = Language.all;
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
         this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
         this._routingState.loadRouting();
@@ -40,6 +43,18 @@ export class AppComponent implements OnInit {
     submit(form: any) {
         console.log(form.value);
     }
+
+    /* language */
+    langListSource: Language[];
+    public get currentLang(): Language {
+        return this._lang.current;
+    }
+    public changeLang = (code: string) => {
+        if (!code) { return; }
+        this._lang.change(code);
+        this.langMenuIsShown = false;
+    }
+    public toggleLang = () => this._lang.current.code === 'RU' ? this.changeLang('EN') : this.changeLang('RU');
 
     /* spinner */
     spinnerActive: boolean;

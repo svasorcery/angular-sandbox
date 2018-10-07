@@ -1,5 +1,3 @@
-<h1>{{ 'APP.HELLO' | translate }}</h1>
-
 <spinner [active]="spinnerActive"></spinner>
 
 <error [active]="apiError" 
@@ -8,7 +6,14 @@
 </error>
 
 
-<div *ngIf="!spinnerActive" class="container" style="padding-top:10px">
+<div *ngIf="!spinnerActive" style="margin:10px 50px">
+    <h1>
+        {{ 'APP.HELLO' | translate }}
+        <small (click)="toggleLang()" style="cursor:pointer">
+            <img [src]="currentLang.imageUri">
+            {{ currentLang.code }}
+        </small>
+    </h1>
     
     <div> 
         <button *ngIf="!error" (click)="error=!error" class="btn btn-danger">Show error</button>
@@ -24,7 +29,7 @@
 
     <form #form="ngForm" (submit)="submit(form)" class="well">
 
-        <!--<div class="form-group col-md-6">
+        <div class="form-group col-md-6">
             <label>Rail station autocomplete</label>
             <autocomplete 
                 [(ngModel)]="railStation" 
@@ -39,14 +44,14 @@
         <div class="form-group col-md-6">
             <label>Country typeahead</label>
             <typeahead 
-                [(ngModel)]="country" 
+                [(ngModel)]="country"
                 [source]="countriesSource"
                 placeholder="Start to type a country name"
                 required
                 name="country">
             </typeahead>
             <div>{{ country | json }}</div>
-        </div>-->
+        </div>
 
         <div class="form-group col-md-6">
             <label>Day of birth</label>        
@@ -58,10 +63,13 @@
                 name="birthDate">
             </date-picker>
             <div *ngIf="form.valid">{{ birthDate | date:'dd.MM.yyyy' }}</div>
-            <div *ngIf="form.invalid">{{ form.controls.birthDate.errors.message }}</div>
+            <div *ngIf="form.invalid">{{ form.controls['birthDate'].errors.message }}</div>
         </div>
 
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        <div class="clearfix"></div>
+        <div class="form-group">
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+        </div>
         
     </form>
 
