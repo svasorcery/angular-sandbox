@@ -27,6 +27,7 @@ import { CheckboxListComponent } from './components/checkbox-list.component';
 import { FileUploadComponent } from './components/file-upload.component';
 import { FileReadComponent } from './components/file-read.component';
 import { StatusIndicatorComponent } from './components/status-indicator.component';
+import { PagerComponent } from './components/pager.component';
 
 // services
 //import { AuthorizationService, AccountService } from './directives/auth.directive';
@@ -91,6 +92,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         FileUploadComponent,
         FileReadComponent,
         StatusIndicatorComponent,
+        PagerComponent,
 
         PopoverDirective,
         //DisableIfUnauthorizedDirective,

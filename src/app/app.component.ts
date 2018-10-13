@@ -7,6 +7,7 @@ import { NotificationService } from './components/errors/notification.service';
 import { RoutingStateService } from './services/routing-state.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
 import { ListItem } from './components/checkbox-list.component';
+import { IPager } from './components/pager.component';
 
 @Component({
     selector: 'app-root',
@@ -150,4 +151,12 @@ export class AppComponent implements OnInit {
         }
     }
     toggleStatusPulse = () => this.statusPulse = !this.statusPulse;
+
+    /* pagination */
+    paginationInfo: IPager = { itemsPage = 10; totalItems = 100; actualPage = 1; totalPages = 10; items = 10; };
+    public onPageChanged(page: any): any {
+        this.paginationInfo.actualPage = page;
+        // http-request here
+        console.log(page);
+    }
 }
