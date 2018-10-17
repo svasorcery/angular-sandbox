@@ -46,6 +46,7 @@ import { ClipboardDirective } from './directives/clipboard.directive';
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
 import { CreditCardValidator } from './validators/credit-card-number.validator';
+import { EmailValidator } from './validators/email.validator';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -102,6 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
         DateRangeValidator,
         CreditCardValidator,
+        EmailValidator,
 
         FilterPipe,
         FileSizePipe,
