@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 
 // modules
-import { ErrorsModule } from './components/errors/errors.module';
+import { ErrorsModule } from './errors';
 
 // components
 import { SpinnerComponent } from './components/spinner.component';
@@ -64,6 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CommonModule,
         FormsModule,
         HttpClientModule,
+        ErrorsModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -71,7 +72,6 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        ErrorsModule,
         RouterModule.forRoot([
             { path: '', component: AppComponent, pathMatch: 'full' }
         ])

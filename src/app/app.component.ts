@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { ApiError } from './components/errors/errors.models';
+import { ApiError, NotificationService } from './errors';
 import { LanguageService, Language } from './services/language.service';
-import { NotificationService } from './components/errors/notification.service';
 import { RoutingStateService } from './services/routing-state.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
 import { ListItem } from './components/checkbox-list.component';
@@ -53,7 +52,6 @@ export class AppComponent implements OnInit {
     public changeLang = (code: string) => {
         if (!code) { return; }
         this._lang.change(code);
-        this.langMenuIsShown = false;
     }
     public toggleLang = () => this._lang.current.code === 'RU' ? this.changeLang('EN') : this.changeLang('RU');
 
@@ -153,7 +151,7 @@ export class AppComponent implements OnInit {
     toggleStatusPulse = () => this.statusPulse = !this.statusPulse;
 
     /* pagination */
-    paginationInfo: IPager = { itemsPage = 10; totalItems = 100; actualPage = 1; totalPages = 10; items = 10; };
+    paginationInfo: IPager = { itemsPage: 10, totalItems: 100, actualPage: 1, totalPages: 10, items: 10 };
     public onPageChanged(page: any): any {
         this.paginationInfo.actualPage = page;
         // http-request here
