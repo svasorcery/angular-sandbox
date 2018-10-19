@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 // modules
 import { ErrorsModule } from './errors';
+import { WebSocketsModule } from './websockets';
 
 // components
 import { SpinnerComponent } from './components/spinner.component';
@@ -71,6 +72,9 @@ export function HttpLoaderFactory(http: HttpClient) {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
+        }),
+        WebSocketsModule.config({
+            url: 'wss://localhost:8082/'
         }),
         RouterModule.forRoot([
             { path: '', component: AppComponent, pathMatch: 'full' }
