@@ -1,7 +1,7 @@
 import { Directive, forwardRef } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, Validator, Validators, ValidatorFn } from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, Validator, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 
-export const email: ValidatorFn = (control: AbstractControl): { [key: string]: boolean } => {
+export const email: ValidatorFn = (control: AbstractControl): ValidationErrors => {
     if (!!Validators.required(control)) {
         return null;
     }
@@ -16,7 +16,7 @@ export const email: ValidatorFn = (control: AbstractControl): { [key: string]: b
     ]
 })
 export class EmailValidator implements Validator {
-    validate(c: AbstractControl): { [key: string]: any } {
+    validate(c: AbstractControl): ValidationErrors {
         return email(c);
     }
 }
