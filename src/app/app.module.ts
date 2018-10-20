@@ -50,6 +50,7 @@ import { CreditCardValidator } from './validators/credit-card-number.validator';
 import { EmailValidator } from './validators/email.validator';
 import { UrlValidator } from './validators/url.validator';
 import { Base64Validator } from './validators/base64.validator';
+import { UUIDValidator } from './validators/uuid.validator';
 
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -112,6 +113,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         EmailValidator,
         UrlValidator,
         Base64Validator,
+        UUIDValidator,
 
         FilterPipe,
         FileSizePipe,
