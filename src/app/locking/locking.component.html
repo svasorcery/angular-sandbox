@@ -1,0 +1,35 @@
+<h3>
+    Locked list
+    <i (click)="refresh()"
+        title="Refresh"
+        class="fa fa-refresh pull-right"
+        style="cursor:pointer; margin:0 15px;">
+    </i>
+</h3>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>What</th>
+            <th style="width:250px">Who</th>
+            <th style="width:120px">When</th>
+            <th style="width:50px; text-align:center;">
+                <i (click)="unlockAll()"
+                    title="Unlock all"
+                    class="fa fa-2x fa-unlock-alt text-success"
+                    style="cursor:pointer">
+                </i>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items$ | async as items">
+            <td>{{ item.key }}</td>
+            <td>{{ item.userName }}</td>
+            <td>{{ item.at | date:'HH:mm:ss' }}</td>
+            <td (click)="unlock(item)" style="cursor:pointer; text-align:center;">
+                <i title="Unlock" class="fa fa-unlock-alt text-danger"></i>
+            </td>
+        </tr>
+    </tbody>
+</table>

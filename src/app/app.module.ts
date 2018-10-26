@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 // modules
 import { ErrorsModule } from './errors';
 import { WebSocketsModule } from './websockets';
+import { LockingModule } from './locking';
 
 // components
 import { SpinnerComponent } from './components/spinner.component';
@@ -80,6 +81,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         WebSocketsModule.config({
             url: 'wss://localhost:8082/'
         }),
+        LockingModule,
         RouterModule.forRoot([
             { path: '', component: AppComponent, pathMatch: 'full' }
         ])
