@@ -1,0 +1,13 @@
+.form-control[required], .form-control.required {
+    border-top-color: #289ddf;
+    border-right-color: #289ddf;
+    border-bottom-color: #289ddf;
+}
+
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form)  {
+    border-left: 5px solid #a94442;
+}
