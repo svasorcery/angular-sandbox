@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { ApiError, NotificationService } from './errors';
@@ -24,7 +24,8 @@ export class AppComponent implements OnInit {
         http: HttpClient,
         private _lang: LanguageService,
         private _notification: NotificationService,
-        private _routingState: RoutingStateService
+        private _routingState: RoutingStateService,
+        private _el: ElementRef
     ) {
         this.langListSource = Language.all;
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
@@ -38,6 +39,7 @@ export class AppComponent implements OnInit {
         this._notification
             .notification$
             .subscribe(error => this.apiError = error);
+        this.setHtmlLangAttribute();
     }
 
     submit(form: any) {
@@ -54,6 +56,13 @@ export class AppComponent implements OnInit {
         this._lang.change(code);
     }
     public toggleLang = () => this._lang.current.code === 'RU' ? this.changeLang('EN') : this.changeLang('RU');
+    public setHtmlLangAttribute = () => {
+        /* set html lang attribute (Chrome auto-translate issue) */
+        const lang = document.createAttribute('lang');
+        lang.value = _lang.current.code.toLowerCase() || 'ru';
+        const attrs = _el.nativeElement.parentElement.parentElement.attributes;
+        if (attrs) { attrs.setNamedItem(lang); }
+    }
 
     /* spinner */
     spinnerActive: boolean;
