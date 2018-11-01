@@ -7,6 +7,14 @@
 
 
 <div *ngIf="!spinnerActive" style="margin:10px 50px">
+    <carousel>
+        <ng-container *ngFor="let slide of carouselSlides;">
+            <ng-container *carouselItem>
+                <div class="carousel-item">{{ slide.title }}</div>
+            </ng-container>
+        </ng-container>
+    </carousel>
+
     <h1>
         {{ 'APP.HELLO' | translate }}
         <small (click)="toggleLang()" style="cursor:pointer">

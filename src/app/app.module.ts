@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -30,6 +31,7 @@ import { FileUploadComponent } from './components/file-upload.component';
 import { FileReadComponent } from './components/file-read.component';
 import { StatusIndicatorComponent } from './components/status-indicator.component';
 import { PagerComponent } from './components/pager.component';
+import { CarouselComponent, CarouselItemDirective, CarouselItemElement } from './components/carousel.component';
 
 // services
 //import { AuthorizationService, AccountService } from './directives/auth.directive';
@@ -67,6 +69,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         CommonModule,
         HttpClientModule,
         ErrorsModule,
@@ -104,12 +107,15 @@ export function HttpLoaderFactory(http: HttpClient) {
         FileReadComponent,
         StatusIndicatorComponent,
         PagerComponent,
+        CarouselComponent,
 
         PopoverDirective,
         //DisableIfUnauthorizedDirective,
         //HideIfUnauthorizedDirective,
         AutofocusDirective,
         ClipboardDirective,
+        CarouselItemDirective,
+        CarouselItemElement,
 
         DateRangeValidator,
         CreditCardValidator,

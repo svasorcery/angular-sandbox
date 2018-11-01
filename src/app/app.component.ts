@@ -59,8 +59,8 @@ export class AppComponent implements OnInit {
     public setHtmlLangAttribute = () => {
         /* set html lang attribute (Chrome auto-translate issue) */
         const lang = document.createAttribute('lang');
-        lang.value = _lang.current.code.toLowerCase() || 'ru';
-        const attrs = _el.nativeElement.parentElement.parentElement.attributes;
+        lang.value = this._lang.current.code.toLowerCase() || 'ru';
+        const attrs = this._el.nativeElement.parentElement.parentElement.attributes;
         if (attrs) { attrs.setNamedItem(lang); }
     }
 
@@ -166,4 +166,11 @@ export class AppComponent implements OnInit {
         // http-request here
         console.log(page);
     }
+
+    /* carousel */
+    public carouselSlides = [
+        { title: 'Slide 1' },
+        { title: 'Slide 2' },
+        { title: 'Slide 3' },
+    ];
 }
