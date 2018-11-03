@@ -49,6 +49,7 @@ import { ClipboardDirective } from './directives/clipboard.directive';
 
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
+import { DigitsValidator } from './validators/digit.validator';
 import { CreditCardValidator } from './validators/credit-card-number.validator';
 import { EmailValidator } from './validators/email.validator';
 import { UrlValidator } from './validators/url.validator';
@@ -118,6 +119,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CarouselItemElement,
 
         DateRangeValidator,
+        DigitsValidator,
         CreditCardValidator,
         EmailValidator,
         UrlValidator,
