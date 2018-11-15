@@ -61,6 +61,7 @@ import { JsonValidator } from './validators/json.validator';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
 import { SafePipe } from './pipes/safe.pipe';
+import { KeyValuePipe } from './pipes/key-value.pipe';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -129,7 +130,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
         FilterPipe,
         FileSizePipe,
-        SafePipe
+        SafePipe,
+        KeyValuePipe
     ],
     providers: [
         //AuthorizationService,
