@@ -34,7 +34,7 @@ import { PagerComponent } from './components/pager.component';
 import { CarouselComponent, CarouselItemDirective, CarouselItemElement } from './components/carousel.component';
 
 // services
-//import { AuthorizationService, AccountService } from './directives/auth.directive';
+// import { AuthorizationService, AccountService } from './directives/auth.directive';
 import { StorageService } from './services/storage.service';
 import { LanguageService } from './services/language.service';
 import { NotificationService } from './services/notification.service';
@@ -43,9 +43,10 @@ import { ClipboardService } from './directives/clipboard.directive';
 
 // directives
 import { PopoverDirective } from './components/popover.component';
-//import { DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
+// import { DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { ClipboardDirective } from './directives/clipboard.directive';
+import { SortableTableDirective, SortableColumnComponent, SortService } from './directives/sortable-table.directive';
 
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
@@ -110,6 +111,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         StatusIndicatorComponent,
         PagerComponent,
         CarouselComponent,
+        SortableTableDirective,
 
         PopoverDirective,
         //DisableIfUnauthorizedDirective,
@@ -118,6 +120,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         ClipboardDirective,
         CarouselItemDirective,
         CarouselItemElement,
+        SortableColumnComponent,
 
         DateRangeValidator,
         DigitsValidator,
@@ -140,6 +143,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         LanguageService,
         NotificationService,
         ClipboardService,
+        SortService,
         RoutingStateService
     ],
     bootstrap: [
