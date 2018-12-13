@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 
@@ -47,6 +49,7 @@ import { PopoverDirective } from './components/popover.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
 import { ClipboardDirective } from './directives/clipboard.directive';
 import { SortableTableDirective, SortableColumnComponent, SortService } from './directives/sortable-table.directive';
+import { GravatarDirective } from './directives/gravatar.directive';
 
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
@@ -75,6 +78,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         BrowserAnimationsModule,
         CommonModule,
         HttpClientModule,
+        MatCardModule,
+        MatInputModule,
         ErrorsModule,
         FormsExtendedModule,
         LockingModule,
@@ -112,10 +117,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         PagerComponent,
         CarouselComponent,
         SortableTableDirective,
+        GravatarDirective,
 
         PopoverDirective,
-        //DisableIfUnauthorizedDirective,
-        //HideIfUnauthorizedDirective,
+        // DisableIfUnauthorizedDirective,
+        // HideIfUnauthorizedDirective,
         AutofocusDirective,
         ClipboardDirective,
         CarouselItemDirective,
@@ -137,8 +143,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         KeyValuePipe
     ],
     providers: [
-        //AuthorizationService,
-        //AccountService,
+        // AuthorizationService,
+        // AccountService,
         StorageService,
         LanguageService,
         NotificationService,

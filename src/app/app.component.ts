@@ -173,4 +173,7 @@ export class AppComponent implements OnInit {
         { title: 'Slide 2' },
         { title: 'Slide 3' },
     ];
+
+    /* gravatar directive */
+    email: string = 'sva.sorcery@gmail.com';
 }
