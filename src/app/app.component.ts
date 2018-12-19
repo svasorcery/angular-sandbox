@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { ApiError, NotificationService } from './errors';
 import { LanguageService, Language } from './services/language.service';
@@ -104,8 +105,6 @@ export class AppComponent implements OnInit {
         }, 5000);
     }
 
-    /* filter */
-    filterTerm: string = '';
     pizzasList: ListItem[] = [
         'Alla Napoletana',
         'Marinara',
@@ -126,6 +125,22 @@ export class AppComponent implements OnInit {
         'Romana',
         'Liguria'
     ].map(p => { return { name: p } as ListItem });
+
+    /* drag-drop */
+    drop(event: CdkDragDrop<string[]>) {
+        if (event.previousContainer !== event.container) {
+            transferArrayItem(
+                event.previousContainer.data,
+                event.container.data,
+                event.previousIndex,
+                event.currentIndex);
+        } else {
+            moveItemInArray(this.pizzasList, event.previousIndex, event.currentIndex);
+        }
+    }
+
+    /* filter */
+    filterTerm: string = '';
 
     /* checkbox-list */
     selectedPizzaIndexes = [ 1, 3, 5 ];

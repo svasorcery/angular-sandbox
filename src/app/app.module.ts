@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MatCardModule } from '@angular/material/card';
-import { MatInputModule } from '@angular/material/input';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatCardModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -78,6 +78,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         BrowserAnimationsModule,
         CommonModule,
         HttpClientModule,
+        DragDropModule,
         MatCardModule,
         MatInputModule,
         ErrorsModule,

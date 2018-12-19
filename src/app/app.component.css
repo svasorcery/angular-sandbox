@@ -8,4 +8,13 @@
     font-size: 50px;
     line-height: 300px;
     text-align: center;
-  }
+}
+
+.drag-drop-item {
+    height: 30px;
+    margin-top: 3px;
+    border: 1px solid darkred;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

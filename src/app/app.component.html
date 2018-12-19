@@ -81,6 +81,33 @@
         
     </form>
 
+    <div class="form-group col-md-5 panel panel-default">
+        <div class="panel-body">
+            <label>Drag'n'drop pizzas</label>
+            <div class="clearfix"></div>
+            <div cdkDropList
+                #firstList="cdkDropList"
+                [cdkDropListData]="pizzasList"
+                [cdkDropListConnectedTo]="secondList"
+                (cdkDropListDropped)="drop($event)"
+                class="col-md-6">
+                <div *ngFor="let pizza of pizzasList" class="drag-drop-item" cdkDrag>
+                    {{ pizza.name }}
+                </div>
+            </div>
+            <div cdkDropList
+                #secondList="cdkDropList"
+                [cdkDropListData]="selectedPizzas"
+                [cdkDropListConnectedTo]="firstList"
+                (cdkDropListDropped)="drop($event)"
+                class="col-md-6">
+                <div *ngFor="let pizza of selectedPizzas" class="drag-drop-item" cdkDrag>
+                    {{ pizza.name }}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="form-group col-md-3 panel panel-default">
         <div class="panel-body">
             <label>Filter pizzas</label> 
@@ -96,20 +123,24 @@
         </div>
     </div>
 
-    <div class="col-md-6 panel panel-default">
+    <div class="form-group col-md-4 panel panel-default">
         <div class="panel-body">
-        <div class="col-md-6">
-        <label>Select pizzas</label> 
-            <checkbox-list [items]="pizzasList" [selectedIndexes]="selectedPizzaIndexes" (selectedItems)="selectedPizzas = $event"></checkbox-list>
-        </div>
-        <div class="col-md-6">
-            <label>Selected</label> 
-            <ul>
-                <li *ngFor="let pizza of selectedPizzas">
-                    {{ pizza.name }}
-                </li>
-            </ul>
-        </div>
+            <div class="col-md-8">
+                <label>Select pizzas</label> 
+                <checkbox-list
+                    [items]="pizzasList"
+                    [selectedIndexes]="selectedPizzaIndexes"
+                    (selectedItems)="selectedPizzas = $event">
+                </checkbox-list>
+            </div>
+            <div class="col-md-4">
+                <label>Selected</label> 
+                <ul>
+                    <li *ngFor="let pizza of selectedPizzas">
+                        {{ pizza.name }}
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
