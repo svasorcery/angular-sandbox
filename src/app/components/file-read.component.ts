@@ -58,7 +58,7 @@ export class FileReadComponent {
     @Input() accept: string = '.txt';
     @Input() encoding: string = 'UTF-8';
     @Input() sizeLimitKb: number = 51200;
-    @Output('read') onChange: EventEmitter<string> = new EventEmitter();
+    @Output('read') onChange: EventEmitter<string | ArrayBuffer> = new EventEmitter();
     @Output('progress') onProgressChange: EventEmitter<number> = new EventEmitter();
 
     locked: boolean = false;

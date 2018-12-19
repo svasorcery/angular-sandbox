@@ -33,21 +33,15 @@ export class CheckboxListItem implements ListItem {
 })
 
 export class CheckboxListComponent implements OnInit {
-    @Input('items') inputItems: ListItem[] = [];
+    @Input() items: CheckboxListItem[] = [];
     @Input('selectedIndexes') inputIndexes: number[] = [];
 
     @Output('selectedItems') onSelectItems: EventEmitter<ListItem[]> = new EventEmitter();
     @Output('selectedIndexes') onSelectIndexes: EventEmitter<number[]> = new EventEmitter();
 
-    items: CheckboxListItem[] = [];
-
     constructor() { }
 
     ngOnInit() {
-        if (!this.inputItems) { return; }
-
-        this.items = this.inputItems.map(i => new CheckboxListItem(i.name, false));
-
         if (!this.inputIndexes || this.inputIndexes.length === 0 ) {
             return;
         }
