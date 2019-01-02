@@ -64,6 +64,7 @@ import { JsonValidator } from './validators/json.validator';
 // pipes
 import { FilterPipe } from './pipes/filter.pipe';
 import { FileSizePipe } from './pipes/file-size.pipe';
+import { WeightPipe } from './pipes/weight.pipe';
 import { SafePipe } from './pipes/safe.pipe';
 import { KeyValuePipe } from './pipes/key-value.pipe';
 
@@ -140,6 +141,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
         FilterPipe,
         FileSizePipe,
+        WeightPipe,
         SafePipe,
         KeyValuePipe
     ],
