@@ -42,6 +42,7 @@ import { LanguageService } from './services/language.service';
 import { NotificationService } from './services/notification.service';
 import { RoutingStateService } from './services/routing-state.service';
 import { ClipboardService } from './directives/clipboard.directive';
+import { PlatformService } from './services/platform.service';
 
 // directives
 import { PopoverDirective } from './components/popover.component';
@@ -151,7 +152,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         NotificationService,
         ClipboardService,
         SortService,
-        RoutingStateService
+        RoutingStateService,
+        PlatformService
     ],
     bootstrap: [
         AppComponent

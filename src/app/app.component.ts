@@ -5,6 +5,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { ApiError, NotificationService } from './errors';
 import { LanguageService, Language } from './services/language.service';
 import { RoutingStateService } from './services/routing-state.service';
+import { PlatformService } from './services/platform.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
 import { ListItem } from './components/checkbox-list.component';
 import { IPager } from './components/pager.component';
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
         private _lang: LanguageService,
         private _notification: NotificationService,
         private _routingState: RoutingStateService,
+        _platform: PlatformService,
         private _el: ElementRef
     ) {
         this.langListSource = Language.all;
@@ -33,6 +35,12 @@ export class AppComponent implements OnInit {
         this.countriesSource = new CountriesListSource(http, this.railApiBaseUrl);
         this._routingState.loadRouting();
         this.prevState = this._routingState.getPreviousUrl();
+
+        this.myPlatform = _platform.isServer ? 'Server'
+            : _platform.isBrowser ? 'Browser'
+            : _platform.isIE ? 'IE'
+            : _platform.isMobile ? 'Mobile'
+            : 'unknown';
     }
 
     ngOnInit() {
@@ -46,6 +54,9 @@ export class AppComponent implements OnInit {
     submit(form: any) {
         console.log(form.value);
     }
+
+    /* platform */
+    myPlatform: string = '';
 
     /* language */
     langListSource: Language[];
