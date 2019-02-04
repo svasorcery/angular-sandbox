@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 import { ApiError, NotificationService } from './errors';
@@ -28,7 +29,8 @@ export class AppComponent implements OnInit {
         private _notification: NotificationService,
         private _routingState: RoutingStateService,
         _platform: PlatformService,
-        private _el: ElementRef
+        private _el: ElementRef,
+        private _formBuilder: FormBuilder
     ) {
         this.langListSource = Language.all;
         this.railStatonsSource = new RailStationsListSource(http, this.railApiBaseUrl);
@@ -49,6 +51,16 @@ export class AppComponent implements OnInit {
             .notification$
             .subscribe(error => this.apiError = error);
         this.setHtmlLangAttribute();
+
+        this.control = this._formBuilder.control('', Validators.required);
+        this.componentErrorForm = this._formBuilder.group({
+            name: ['', [Validators.required, Validators.minLength(3)]],
+            terms: ['', Validators.requiredTrue],
+            address: this._formBuilder.group({
+                city: ['', Validators.required],
+                country: ['', Validators.required]
+            })
+        });
     }
 
     submit(form: any) {
@@ -98,6 +110,11 @@ export class AppComponent implements OnInit {
 
     /* error */
     error: boolean;
+
+    /* component-error */
+    componentErrorForm: FormGroup;
+    control: FormControl;
+    customErrors = {required: 'Please accept the terms'}
 
     /* modal */
     modal: boolean;

@@ -225,6 +225,33 @@
           </mat-card-content>
         </mat-card>
     </div>
+
+    <div class="col-md-4">
+        <form [formGroup]="componentErrorForm">
+            <div class="form-group">
+                <input class="input" formControlName="name" placeholder="Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <div controlErrorContainer>
+                    <label class="checkbox">
+                        <input type="checkbox" formControlName="terms" [customErrors]="customErrors" class="form-control">
+                        I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                </div>
+            </div>
+            <div formGroupName="address">
+                <div class="form-group">
+                    <input class="input" formControlName="city" placeholder="City" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input class="input" formControlName="country" placeholder="Country" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="componentErrorForm.invalid" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 
 <pager [model]="paginationInfo" (changed)="onPageChanged($event)"><pager>
