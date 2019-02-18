@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
-import { ApiError, NotificationService } from './errors';
+import { ApiError, NotificationService } from './modules/errors';
 import { LanguageService, Language } from './services/language.service';
 import { RoutingStateService } from './services/routing-state.service';
 import { PlatformService } from './services/platform.service';
