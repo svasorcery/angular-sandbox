@@ -53,6 +53,7 @@ import { AutofocusDirective } from './directives/autofocus.directive';
 import { ClipboardDirective } from './directives/clipboard.directive';
 import { SortableTableDirective, SortableColumnComponent, SortService } from './directives/sortable-table.directive';
 import { GravatarDirective } from './directives/gravatar.directive';
+import { ClickoutDirective } from './directives/clickout.directive';
 
 // validation directives
 import { DateRangeValidator } from './validators/date-range.validator';
@@ -125,6 +126,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         CarouselComponent,
         SortableTableDirective,
         GravatarDirective,
+        ClickoutDirective,
 
         PopoverDirective,
         // DisableIfUnauthorizedDirective,
