@@ -10,67 +10,23 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCardModule, MatInputModule } from '@angular/material';
 
-import { AppComponent } from './app.component';
-
-// modules
-import { ErrorsModule } from './errors';
 import { ControlErrorModule } from './control-error';
-import { WebSocketsModule } from './websockets';
+import { ErrorsModule } from './errors';
 import { FormsExtendedModule } from './forms';
 import { LockingModule } from './locking';
+import { WebSocketsModule } from './websockets';
 
-// components
-import { SpinnerComponent } from './components/spinner.component';
-import { ErrorComponent } from './components/error.component';
-import { BreadcrumbComponent } from './components/breadcrumb.component';
-import { AutoCompleteComponent } from './components/autocomplete.component';
-import { TypeAheadComponent } from './components/typeahead.component';
-import { DatePickerComponent } from './components/datepicker.component';
-import { ModalComponent } from './components/modal.component';
-import { PopoverContentComponent } from './components/popover.component';
-import { ComboBoxComponent } from './components/combo-box.component';
-import { ToggleSwitchComponent } from './components/toggle-switch.component';
-import { CheckboxListComponent } from './components/checkbox-list.component';
-import { FileUploadComponent } from './components/file-upload.component';
-import { FileReadComponent } from './components/file-read.component';
-import { StatusIndicatorComponent } from './components/status-indicator.component';
-import { PagerComponent } from './components/pager.component';
-import { CarouselComponent, CarouselItemDirective, CarouselItemElement } from './components/carousel.component';
-
-// services
-// import { AuthorizationService, AccountService } from './directives/auth.directive';
-import { StorageService } from './services/storage.service';
-import { LanguageService } from './services/language.service';
-import { NotificationService } from './services/notification.service';
-import { RoutingStateService } from './services/routing-state.service';
 import { ClipboardService } from './directives/clipboard.directive';
-import { PlatformService } from './services/platform.service';
+import { SortService } from './directives/sortable-table.directive';
+// import { AuthorizationService, AccountService } from './directives/auth.directive';
 
-// directives
-import { PopoverDirective } from './components/popover.component';
-// import { DisableIfUnauthorizedDirective, HideIfUnauthorizedDirective } from './directives/auth.directive';
-import { AutofocusDirective } from './directives/autofocus.directive';
-import { ClipboardDirective } from './directives/clipboard.directive';
-import { SortableTableDirective, SortableColumnComponent, SortService } from './directives/sortable-table.directive';
-import { GravatarDirective } from './directives/gravatar.directive';
-import { ClickoutDirective } from './directives/clickout.directive';
+import { components } from './components';
+import { directives } from './directives';
+import { validators } from './validators';
+import { pipes } from './pipes';
+import { services } from './services';
 
-// validation directives
-import { DateRangeValidator } from './validators/date-range.validator';
-import { DigitsValidator } from './validators/digit.validator';
-import { CreditCardValidator } from './validators/credit-card-number.validator';
-import { EmailValidator } from './validators/email.validator';
-import { UrlValidator } from './validators/url.validator';
-import { Base64Validator } from './validators/base64.validator';
-import { UUIDValidator } from './validators/uuid.validator';
-import { JsonValidator } from './validators/json.validator';
-
-// pipes
-import { FilterPipe } from './pipes/filter.pipe';
-import { FileSizePipe } from './pipes/file-size.pipe';
-import { WeightPipe } from './pipes/weight.pipe';
-import { SafePipe } from './pipes/safe.pipe';
-import { KeyValuePipe } from './pipes/key-value.pipe';
+import { AppComponent } from './app.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -87,8 +43,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         DragDropModule,
         MatCardModule,
         MatInputModule,
-        ErrorsModule,
         ControlErrorModule,
+        ErrorsModule,
         FormsExtendedModule,
         LockingModule,
         TranslateModule.forRoot({
@@ -107,61 +63,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     ],
     declarations: [
         AppComponent,
-
-        SpinnerComponent,
-        ErrorComponent,
-        BreadcrumbComponent,
-        AutoCompleteComponent,
-        TypeAheadComponent,
-        DatePickerComponent,
-        ModalComponent,
-        PopoverContentComponent,
-        ComboBoxComponent,
-        ToggleSwitchComponent,
-        CheckboxListComponent,
-        FileUploadComponent,
-        FileReadComponent,
-        StatusIndicatorComponent,
-        PagerComponent,
-        CarouselComponent,
-        SortableTableDirective,
-        GravatarDirective,
-        ClickoutDirective,
-
-        PopoverDirective,
-        // DisableIfUnauthorizedDirective,
-        // HideIfUnauthorizedDirective,
-        AutofocusDirective,
-        ClipboardDirective,
-        CarouselItemDirective,
-        CarouselItemElement,
-        SortableColumnComponent,
-
-        DateRangeValidator,
-        DigitsValidator,
-        CreditCardValidator,
-        EmailValidator,
-        UrlValidator,
-        Base64Validator,
-        UUIDValidator,
-        JsonValidator,
-
-        FilterPipe,
-        FileSizePipe,
-        WeightPipe,
-        SafePipe,
-        KeyValuePipe
+        ...components,
+        ...directives,
+        ...validators,
+        ...pipes
     ],
     providers: [
-        // AuthorizationService,
-        // AccountService,
-        StorageService,
-        LanguageService,
-        NotificationService,
+        ...services,
         ClipboardService,
         SortService,
-        RoutingStateService,
-        PlatformService
+        // AuthorizationService,
+        // AccountService,
     ],
     bootstrap: [
         AppComponent
