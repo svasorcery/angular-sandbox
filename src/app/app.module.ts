@@ -10,23 +10,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCardModule, MatInputModule } from '@angular/material';
 
-import { ControlErrorModule } from './control-error';
-import { ErrorsModule } from './errors';
-import { FormsExtendedModule } from './forms';
-import { LockingModule } from './locking';
-import { WebSocketsModule } from './websockets';
-
-import { ClipboardService } from './directives/clipboard.directive';
-import { SortService } from './directives/sortable-table.directive';
-// import { AuthorizationService, AccountService } from './directives/auth.directive';
-
+import { modules } from './modules';
 import { components } from './components';
 import { directives } from './directives';
 import { validators } from './validators';
 import { pipes } from './pipes';
 import { services } from './services';
+// import { functions } from './functions';
 
 import { AppComponent } from './app.component';
+import { ClipboardService } from './directives/clipboard.directive';
+import { SortService } from './directives/sortable-table.directive';
+// import { AuthorizationService, AccountService } from './directives/auth.directive';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,19 +38,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         DragDropModule,
         MatCardModule,
         MatInputModule,
-        ControlErrorModule,
-        ErrorsModule,
-        FormsExtendedModule,
-        LockingModule,
+       ...modules,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        }),
-        WebSocketsModule.config({
-            url: 'wss://localhost:8082/'
         }),
         RouterModule.forRoot([
             { path: '', component: AppComponent, pathMatch: 'full' }
