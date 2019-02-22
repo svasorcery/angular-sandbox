@@ -29,6 +29,7 @@
     "core-js": "^2.6.1",
     "font-awesome": "4.7.0",
     "jquery": "3.3.1",
+    "ngx-page-scroll": "5.0.0",
     "rxjs": "^6.3.3",
     "ts-md5": "^1.2.4",
     "zone.js": "~0.8.26"
