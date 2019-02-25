@@ -14,6 +14,7 @@ import { FileReadComponent } from './file-read.component';
 import { StatusIndicatorComponent } from './status-indicator.component';
 import { PagerComponent } from './pager.component';
 import { CarouselComponent, CarouselItemDirective, CarouselItemElement } from './carousel.component';
+import { WildCardTreeComponent } from './wildcard-tree.component';
 
 export const components = [
     SpinnerComponent,
@@ -35,4 +36,5 @@ export const components = [
     CarouselComponent,
     CarouselItemDirective,
     CarouselItemElement,
+    WildCardTreeComponent
 ];

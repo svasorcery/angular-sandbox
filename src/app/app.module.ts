@@ -19,6 +19,7 @@ import { services } from './services';
 // import { functions } from './functions';
 
 import { AppComponent } from './app.component';
+import { WildCardTreeComponent } from './components/wildcard-tree.component';
 import { ClipboardService } from './directives/clipboard.directive';
 import { SortService } from './directives/sortable-table.directive';
 // import { AuthorizationService, AccountService } from './directives/auth.directive';
@@ -47,7 +48,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
         RouterModule.forRoot([
-            { path: '', component: AppComponent, pathMatch: 'full' }
+            { path: '', component: AppComponent, pathMatch: 'full' },
+            { path: '**', component: WildCardTreeComponent }
         ])
     ],
     declarations: [

@@ -10,6 +10,7 @@ import { PlatformService } from './services/platform.service';
 import { RailStationsListSource, CountriesListSource } from './app.models';
 import { ListItem } from './components/checkbox-list.component';
 import { IPager } from './components/pager.component';
+import { TreeBuilder, TreeItem } from './components/wildcard-tree.component';
 
 @Component({
     selector: 'app-root',
@@ -219,4 +220,36 @@ export class AppComponent implements OnInit {
 
     /* gravatar directive */
     email: string = 'sva.sorcery@gmail.com';
+
+    /* wildcard-tree */
+    treeData: TreeItem[] = new TreeBuilder()
+        .group('Products')
+            .group('Smartphones')
+                .group('iOS')
+                    .item('iPhone XS')
+                    .item('iPhones X')
+                    .item('iPhone 7s plus')
+                    .item('iPhone 7s')
+                    .item('iPhone 7 plus')
+                    .item('iPhone 7')
+                    .item('iPhone 6s plus')
+                    .item('iPhone 6s')
+                    .item('iPhone 6 plus')
+                    .item('iPhone 6')
+                    .up()
+                .group('Android')
+                    .group('Samsung')
+                        .item('s10 plus')
+                        .item('s10')
+                        .item('s9 plus')
+                        .item('s9 edge')
+                        .item('s9')
+                        .item('s8 plus')
+                        .item('s8')
+                        .up()
+                    .up()
+                .up()
+            .up()
+        .up()        
+        .getData();
 }
