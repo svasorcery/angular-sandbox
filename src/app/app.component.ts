@@ -252,4 +252,14 @@ export class AppComponent implements OnInit {
             .up()
         .up()        
         .getData();
+
+    /* map-google */
+    map: {
+        minClusterSize: 6,
+        gridSize: 35,
+        center: { lat: 55.751244, lng: 37.618423 },
+        markers: [
+            { coords: { lat: 55.752121, lng: 37.617664 } }
+        ]
+    }
 }

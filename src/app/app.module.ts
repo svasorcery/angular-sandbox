@@ -5,10 +5,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCardModule, MatInputModule } from '@angular/material';
+import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { AgmJsMarkerClustererModule } from '@agm/js-marker-clusterer';
 
 import { modules } from './modules';
 import { components } from './components';
@@ -47,6 +51,11 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBAtXvKHtNoM5yKO2y422JUlQ4QwetVhw4'
+        }),
+        AgmSnazzyInfoWindowModule,
+        AgmJsMarkerClustererModule,
         RouterModule.forRoot([
             { path: '', component: AppComponent, pathMatch: 'full' },
             { path: '**', component: WildCardTreeComponent }

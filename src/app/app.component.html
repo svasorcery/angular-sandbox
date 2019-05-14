@@ -253,9 +253,13 @@
         </form>
     </div>
 
-    <div *ngIf="treeData" class="col-md-4">        
+    <div *ngIf="treeData" class="col-md-4">
         <p><a routerLink='/wildcard'>Run wildcard</a></p>
         <wildcard-tree [treeData]="treeData"></wildcard-tree>
+    </div>
+
+    <div *ngIf="map" class="col-md-4">
+        <map-google [map]="map"></map-google>
     </div>
 
 </div>
