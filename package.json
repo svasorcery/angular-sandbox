@@ -31,7 +31,7 @@
     "bootstrap-datepicker": "1.8.0",
     "core-js": "^2.6.1",
     "font-awesome": "4.7.0",
-    "jquery": "3.3.1",
+    "jquery": "3.5.0",
     "ngx-page-scroll": "5.0.0",
     "rxjs": "^6.3.3",
     "ts-md5": "^1.2.4",
